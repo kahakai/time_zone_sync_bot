@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
+	"time"
 )
 
 func AddTimeZone(chatID int, timeZone TimeZone) {
@@ -70,4 +72,23 @@ func RemoveTimeZone(chatID int, label string) {
 	}
 
 	AddTimeZones(chatID, timeZones)
+}
+
+func DisplayTimeZones(chatID int) {
+	timeZones := GetTimeZones(chatID)
+
+	var sb strings.Builder
+
+	now := time.Now()
+
+	for _, tz := range timeZones {
+		location := GetLocation(tz.Location)
+		timeInZone := now.In(location)
+		formattedTime := timeInZone.Format("Mon Jan _2 15:04:05 2006")
+
+		fmt.Fprintf(&sb, "%s: %s %s\n", tz.Label, tz.Location, formattedTime)
+	}
+
+	timeZonesMessage := sb.String()
+	fmt.Println(timeZonesMessage)
 }
