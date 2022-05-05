@@ -1,7 +1,7 @@
 package main
 
 type TimeZone struct {
-	Label string
+	Label    string
 	Location string
 }
 

@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"testing"
 	"reflect"
+	"testing"
 )
 
 func TestFindTimeZoneIndexEmpty(t *testing.T) {
@@ -22,15 +22,15 @@ func TestFindTimeZoneIndexEmpty(t *testing.T) {
 func TestFindTimeZoneIndexInvalid(t *testing.T) {
 	timezones := []TimeZone{
 		{
-			Label: "Test 1",
+			Label:    "Test 1",
 			Location: "Test Location 1",
 		},
 		{
-			Label: "Test 2",
+			Label:    "Test 2",
 			Location: "Test Location 2",
 		},
 		{
-			Label: "Test 3",
+			Label:    "Test 3",
 			Location: "Test Location 3",
 		},
 	}
@@ -47,15 +47,15 @@ func TestFindTimeZoneIndexInvalid(t *testing.T) {
 func TestFindTimeZoneIndex(t *testing.T) {
 	timezones := []TimeZone{
 		{
-			Label: "Test 1",
+			Label:    "Test 1",
 			Location: "Test Location 1",
 		},
 		{
-			Label: "Test 2",
+			Label:    "Test 2",
 			Location: "Test Location 2",
 		},
 		{
-			Label: "Test 3",
+			Label:    "Test 3",
 			Location: "Test Location 3",
 		},
 	}
@@ -74,15 +74,15 @@ func TestGetTimeZones(t *testing.T) {
 
 	timeZones := []TimeZone{
 		{
-			Label: "Test 1",
+			Label:    "Test 1",
 			Location: "Test Location 1",
 		},
 		{
-			Label: "Test 2",
+			Label:    "Test 2",
 			Location: "Test Location 2",
 		},
 		{
-			Label: "Test 3",
+			Label:    "Test 3",
 			Location: "Test Location 3",
 		},
 	}

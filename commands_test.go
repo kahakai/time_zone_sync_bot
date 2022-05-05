@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"testing"
 	"reflect"
+	"testing"
 )
 
 func TestAddTimeZone(t *testing.T) {
 	chatID := 1
 
 	timeZone := TimeZone{
-		Label: "Test",
+		Label:    "Test",
 		Location: "Test Location",
 	}
 
@@ -34,7 +34,7 @@ func TestAddTimeZone(t *testing.T) {
 	record, err := r.Read()
 
 	actualTimeZone := TimeZone{
-		Label: record[0],
+		Label:    record[0],
 		Location: record[1],
 	}
 
@@ -56,15 +56,15 @@ func TestAddTimeZones(t *testing.T) {
 
 	timeZones := []TimeZone{
 		{
-			Label: "Test 1",
+			Label:    "Test 1",
 			Location: "Test Location 1",
 		},
 		{
-			Label: "Test 2",
+			Label:    "Test 2",
 			Location: "Test Location 2",
 		},
 		{
-			Label: "Test 3",
+			Label:    "Test 3",
 			Location: "Test Location 3",
 		},
 	}
@@ -97,7 +97,7 @@ func TestAddTimeZones(t *testing.T) {
 		}
 
 		tz := TimeZone{
-			Label: record[0],
+			Label:    record[0],
 			Location: record[1],
 		}
 
@@ -114,15 +114,15 @@ func TestRemoveTimeZone(t *testing.T) {
 
 	timeZones := []TimeZone{
 		{
-			Label: "Test 1",
+			Label:    "Test 1",
 			Location: "Test Location 1",
 		},
 		{
-			Label: "Test 2",
+			Label:    "Test 2",
 			Location: "Test Location 2",
 		},
 		{
-			Label: "Test 3",
+			Label:    "Test 3",
 			Location: "Test Location 3",
 		},
 	}
@@ -133,11 +133,11 @@ func TestRemoveTimeZone(t *testing.T) {
 
 	want := []TimeZone{
 		{
-			Label: "Test 1",
+			Label:    "Test 1",
 			Location: "Test Location 1",
 		},
 		{
-			Label: "Test 3",
+			Label:    "Test 3",
 			Location: "Test Location 3",
 		},
 	}
@@ -168,7 +168,7 @@ func TestRemoveTimeZone(t *testing.T) {
 		}
 
 		tz := TimeZone{
-			Label: record[0],
+			Label:    record[0],
 			Location: record[1],
 		}
 

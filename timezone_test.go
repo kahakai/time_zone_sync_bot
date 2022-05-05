@@ -1,13 +1,13 @@
 package main
 
 import (
-	"testing"
 	"reflect"
+	"testing"
 )
 
 func TestValues(t *testing.T) {
 	tz := TimeZone{
-		Label: "Test",
+		Label:    "Test",
 		Location: "Test Location",
 	}
 

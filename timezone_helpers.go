@@ -44,7 +44,7 @@ func GetTimeZones(chatID int) []TimeZone {
 		}
 
 		tz := TimeZone{
-			Label: record[0],
+			Label:    record[0],
 			Location: record[1],
 		}
 
