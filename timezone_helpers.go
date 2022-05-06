@@ -19,7 +19,7 @@ func FindTimeZoneIndex(tzs []TimeZone, label string) int {
 	return -1
 }
 
-func GetTimeZones(chatID int) []TimeZone {
+func GetTimeZones(chatID int64) []TimeZone {
 	filename := fmt.Sprintf("%d.csv", chatID)
 	file := filepath.Join("timezones", filename)
 

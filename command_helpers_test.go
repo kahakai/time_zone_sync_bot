@@ -12,7 +12,7 @@ import (
 )
 
 func TestAddTimeZoneFileExists(t *testing.T) {
-	chatID := 1
+	var chatID int64 = 1
 
 	timeZone := TimeZone{
 		Label:    "Test",
@@ -34,7 +34,7 @@ func TestAddTimeZoneFileExists(t *testing.T) {
 }
 
 func TestAddTimeZone(t *testing.T) {
-	chatID := 1
+	var chatID int64 = 1
 
 	timeZone := TimeZone{
 		Label:    "Test",
@@ -77,7 +77,7 @@ func TestAddTimeZone(t *testing.T) {
 }
 
 func TestAddTimeZones(t *testing.T) {
-	chatID := 1
+	var chatID int64 = 1
 
 	timeZones := []TimeZone{
 		{
@@ -136,7 +136,7 @@ func TestAddTimeZones(t *testing.T) {
 }
 
 func TestRemoveTimeZone(t *testing.T) {
-	chatID := 1
+	var chatID int64 = 1
 
 	timeZones := []TimeZone{
 		{
@@ -208,7 +208,7 @@ func TestRemoveTimeZone(t *testing.T) {
 }
 
 func TestRemoveTimeZones(t *testing.T) {
-	chatID := 1
+	var chatID int64 = 1
 
 	timeZones := []TimeZone{
 		{
@@ -238,7 +238,7 @@ func TestRemoveTimeZones(t *testing.T) {
 }
 
 func TestRemoveAllTimeZones(t *testing.T) {
-	chatID := 1
+	var chatID int64 = 1
 
 	timeZones := []TimeZone{
 		{

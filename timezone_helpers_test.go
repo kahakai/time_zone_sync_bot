@@ -71,7 +71,7 @@ func TestFindTimeZoneIndex(t *testing.T) {
 }
 
 func TestGetTimeZones(t *testing.T) {
-	chatID := 1
+	var chatID int64 = 1
 
 	timeZones := []TimeZone{
 		{

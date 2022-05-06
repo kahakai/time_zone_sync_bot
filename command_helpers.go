@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func AddTimeZone(chatID int, timeZone TimeZone) {
+func AddTimeZone(chatID int64, timeZone TimeZone) {
 	filename := fmt.Sprintf("%d.csv", chatID)
 	file := filepath.Join("timezones", filename)
 
@@ -28,7 +28,7 @@ func AddTimeZone(chatID int, timeZone TimeZone) {
 	}
 }
 
-func AddTimeZones(chatID int, timeZones []TimeZone) {
+func AddTimeZones(chatID int64, timeZones []TimeZone) {
 	filename := fmt.Sprintf("%d.csv", chatID)
 	file := filepath.Join("timezones", filename)
 
@@ -48,7 +48,7 @@ func AddTimeZones(chatID int, timeZones []TimeZone) {
 	}
 }
 
-func RemoveTimeZone(chatID int, label string) {
+func RemoveTimeZone(chatID int64, label string) {
 	timeZones := GetTimeZones(chatID)
 
 	if len(timeZones) == 0 {
@@ -78,7 +78,7 @@ func RemoveTimeZone(chatID int, label string) {
 	AddTimeZones(chatID, timeZones)
 }
 
-func RemoveTimeZones(chatID int) {
+func RemoveTimeZones(chatID int64) {
 	filename := fmt.Sprintf("%d.csv", chatID)
 	file := filepath.Join("timezones", filename)
 
@@ -93,7 +93,7 @@ func RemoveAllTimeZones() {
 	}
 }
 
-func DisplayTimeZones(chatID int) {
+func DisplayTimeZones(chatID int64) string {
 	timeZones := GetTimeZones(chatID)
 
 	var sb strings.Builder
@@ -108,6 +108,5 @@ func DisplayTimeZones(chatID int) {
 		fmt.Fprintf(&sb, "%s: %s %s\n", tz.Label, tz.Location, formattedTime)
 	}
 
-	timeZonesMessage := sb.String()
-	fmt.Println(timeZonesMessage)
+	return sb.String()
 }
