@@ -40,3 +40,42 @@ func TestRemoveContents(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestIsEmpty(t *testing.T) {
+	dir := "tmp"
+
+	if err := os.Mkdir(dir, 0755); err != nil {
+		t.Fatal(err)
+	}
+
+	if _, err := IsEmpty(dir); err != nil {
+		t.Fatal(err)
+	}
+
+	if err := os.RemoveAll(dir); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestIsEmptyNotEmpty(t *testing.T) {
+	dir := "tmp"
+
+	if err := os.Mkdir(dir, 0755); err != nil {
+		t.Fatal(err)
+	}
+
+	file := filepath.Join(dir, "tmpfile")
+	f, err := os.Create(file)
+	if err != nil {
+		t.Fatal(err)
+	}
+	f.Close()
+
+	if ok, err := IsEmpty(dir); ok || err != nil {
+		t.Fatal(err)
+	}
+
+	if err := os.RemoveAll(dir); err != nil {
+		t.Fatal(err)
+	}
+}

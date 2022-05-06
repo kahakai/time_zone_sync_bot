@@ -255,14 +255,7 @@ func TestRemoveAllTimeZones(t *testing.T) {
 
 	dir := "timezones"
 
-	f, err := os.Open(dir)
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer f.Close()
-
-	_, err = f.Readdirnames(1)
-	if err != io.EOF {
+	if _, err := IsEmpty(dir); err != nil {
 		t.Fatal(err)
 	}
 }
