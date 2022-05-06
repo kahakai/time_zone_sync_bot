@@ -74,6 +74,14 @@ func RemoveTimeZone(chatID int, label string) {
 	AddTimeZones(chatID, timeZones)
 }
 
+func RemoveTimeZones(chatID int) {
+	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+	
+	if err := os.Remove(filename); err != nil {
+		log.Fatal(err)
+	}
+}
+
 func DisplayTimeZones(chatID int) {
 	timeZones := GetTimeZones(chatID)
 

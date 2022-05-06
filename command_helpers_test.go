@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/csv"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -177,5 +178,34 @@ func TestRemoveTimeZone(t *testing.T) {
 
 	if !reflect.DeepEqual(got, want) {
 		t.Fatalf("%v, want %v", got, want)
+	}
+}
+
+func TestRemoveTimeZones(t *testing.T) {
+	chatID := 1
+
+	timeZones := []TimeZone{
+		{
+			Label:    "Test 1",
+			Location: "Test Location 1",
+		},
+		{
+			Label:    "Test 2",
+			Location: "Test Location 2",
+		},
+		{
+			Label:    "Test 3",
+			Location: "Test Location 3",
+		},
+	}
+
+	AddTimeZones(chatID, timeZones)
+
+	RemoveTimeZones(chatID)
+
+	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+
+	if _, err := os.Stat(filename); !errors.Is(err, os.ErrNotExist) {
+		t.Fatal(err)
 	}
 }
