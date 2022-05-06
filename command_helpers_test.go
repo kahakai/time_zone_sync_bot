@@ -230,3 +230,39 @@ func TestRemoveTimeZones(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestRemoveAllTimeZones(t *testing.T) {
+	chatID := 1
+
+	timeZones := []TimeZone{
+		{
+			Label:    "Test 1",
+			Location: "Test Location 1",
+		},
+		{
+			Label:    "Test 2",
+			Location: "Test Location 2",
+		},
+		{
+			Label:    "Test 3",
+			Location: "Test Location 3",
+		},
+	}
+
+	AddTimeZones(chatID, timeZones)
+
+	RemoveAllTimeZones()
+
+	dir := "timezones"
+
+	f, err := os.Open(dir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer f.Close()
+
+	_, err = f.Readdirnames(1)
+	if err != io.EOF {
+		t.Fatal(err)
+	}
+}

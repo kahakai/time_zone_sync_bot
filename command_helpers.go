@@ -82,6 +82,12 @@ func RemoveTimeZones(chatID int) {
 	}
 }
 
+func RemoveAllTimeZones() {
+	if err := RemoveContents("timezones"); err != nil {
+		log.Fatal(err)
+	}
+}
+
 func DisplayTimeZones(chatID int) {
 	timeZones := GetTimeZones(chatID)
 
