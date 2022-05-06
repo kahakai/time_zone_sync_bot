@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"reflect"
 	"testing"
 )
@@ -20,13 +21,14 @@ func TestAddTimeZoneFileExists(t *testing.T) {
 
 	AddTimeZone(chatID, timeZone)
 
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
 
-	if _, err := os.Stat(filename); errors.Is(err, os.ErrNotExist) {
+	if _, err := os.Stat(file); errors.Is(err, os.ErrNotExist) {
 		t.Fatal(err)
 	}
 
-	if err := os.Remove(filename); err != nil {
+	if err := os.Remove(file); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -41,14 +43,15 @@ func TestAddTimeZone(t *testing.T) {
 
 	AddTimeZone(chatID, timeZone)
 
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
 
-	f, err := os.Open(filename)
+	f, err := os.Open(file)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	defer os.Remove(filename)
+	defer os.Remove(file)
 	defer f.Close()
 
 	r := csv.NewReader(f)
@@ -93,14 +96,15 @@ func TestAddTimeZones(t *testing.T) {
 
 	AddTimeZones(chatID, timeZones)
 
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
 
-	f, err := os.Open(filename)
+	f, err := os.Open(file)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	defer os.Remove(filename)
+	defer os.Remove(file)
 	defer f.Close()
 
 	r := csv.NewReader(f)
@@ -164,14 +168,15 @@ func TestRemoveTimeZone(t *testing.T) {
 		},
 	}
 
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
 
-	f, err := os.Open(filename)
+	f, err := os.Open(file)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	defer os.Remove(filename)
+	defer os.Remove(file)
 	defer f.Close()
 
 	r := csv.NewReader(f)
@@ -224,9 +229,10 @@ func TestRemoveTimeZones(t *testing.T) {
 
 	RemoveTimeZones(chatID)
 
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
 
-	if _, err := os.Stat(filename); !errors.Is(err, os.ErrNotExist) {
+	if _, err := os.Stat(file); !errors.Is(err, os.ErrNotExist) {
 		t.Fatal(err)
 	}
 }

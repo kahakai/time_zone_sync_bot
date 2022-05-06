@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"path/filepath"
 )
 
 func FindTimeZoneIndex(tzs []TimeZone, label string) int {
@@ -19,9 +20,10 @@ func FindTimeZoneIndex(tzs []TimeZone, label string) int {
 }
 
 func GetTimeZones(chatID int) []TimeZone {
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
 
-	f, err := os.Open(filename)
+	f, err := os.Open(file)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -5,14 +5,16 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 )
 
 func AddTimeZone(chatID int, timeZone TimeZone) {
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
 
-	f, err := os.OpenFile(filename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,9 +29,10 @@ func AddTimeZone(chatID int, timeZone TimeZone) {
 }
 
 func AddTimeZones(chatID int, timeZones []TimeZone) {
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
 
-	f, err := os.OpenFile(filename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	f, err := os.OpenFile(file, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -60,9 +63,10 @@ func RemoveTimeZone(chatID int, label string) {
 	copy(timeZones[i:], timeZones[i+1:])
 	timeZones = timeZones[:len(timeZones)-1]
 
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
 
-	f, err := os.OpenFile(filename, os.O_RDWR|os.O_TRUNC, 0644)
+	f, err := os.OpenFile(file, os.O_RDWR|os.O_TRUNC, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -75,9 +79,10 @@ func RemoveTimeZone(chatID int, label string) {
 }
 
 func RemoveTimeZones(chatID int) {
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
-	
-	if err := os.Remove(filename); err != nil {
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
+
+	if err := os.Remove(file); err != nil {
 		log.Fatal(err)
 	}
 }

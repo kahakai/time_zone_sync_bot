@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"reflect"
 	"testing"
 )
@@ -93,8 +94,9 @@ func TestGetTimeZones(t *testing.T) {
 
 	actualTimeZones := GetTimeZones(chatID)
 
-	filename := fmt.Sprintf("timezones/%d.csv", chatID)
-	defer os.Remove(filename)
+	filename := fmt.Sprintf("%d.csv", chatID)
+	file := filepath.Join("timezones", filename)
+	defer os.Remove(file)
 
 	if !reflect.DeepEqual(actualTimeZones, timeZones) {
 		t.Fatalf("%v, want %v", actualTimeZones, timeZones)
