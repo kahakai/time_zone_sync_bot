@@ -10,6 +10,27 @@ import (
 	"testing"
 )
 
+func TestAddTimeZoneFileExists(t *testing.T) {
+	chatID := 1
+
+	timeZone := TimeZone{
+		Label:    "Test",
+		Location: "Test Location",
+	}
+
+	AddTimeZone(chatID, timeZone)
+
+	filename := fmt.Sprintf("timezones/%d.csv", chatID)
+
+	if _, err := os.Stat(filename); errors.Is(err, os.ErrNotExist) {
+		t.Fatal(err)
+	}
+
+	if err := os.Remove(filename); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestAddTimeZone(t *testing.T) {
 	chatID := 1
 
