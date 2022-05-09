@@ -4,11 +4,11 @@ import (
 	"time"
 )
 
-func GetLocation(name string) *time.Location {
+func GetLocation(name string) (*time.Location, error) {
 	location, err := time.LoadLocation(name)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	return location
+	return location, nil
 }
