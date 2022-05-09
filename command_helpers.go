@@ -101,7 +101,12 @@ func DisplayTimeZones(chatID int64) string {
 	now := time.Now()
 
 	for _, tz := range timeZones {
-		location := GetLocation(tz.Location)
+		location, err := GetLocation(tz.Location)
+		if err != nil {
+			log.Println(err)
+			continue
+		}
+
 		timeInZone := now.In(location)
 		formattedTime := timeInZone.Format("Mon Jan _2 15:04:05 2006")
 
