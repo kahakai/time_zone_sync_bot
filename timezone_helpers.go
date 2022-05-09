@@ -25,14 +25,17 @@ func GetTimeZones(chatID int64) []TimeZone {
 
 	f, err := os.Open(file)
 	if err != nil {
-		log.Fatal(err)
+		err = fmt.Errorf("GetTimeZones: %w", err)
+		log.Println(err)
+
+		return []TimeZone{}
 	}
 
 	defer f.Close()
 
 	r := csv.NewReader(f)
 
-	var timezones []TimeZone
+	var timeZones []TimeZone
 
 	for {
 		record, err := r.Read()
@@ -42,7 +45,8 @@ func GetTimeZones(chatID int64) []TimeZone {
 		}
 
 		if err != nil {
-			log.Fatal(err)
+			log.Println(err)
+			break
 		}
 
 		tz := TimeZone{
@@ -50,8 +54,8 @@ func GetTimeZones(chatID int64) []TimeZone {
 			Location: record[1],
 		}
 
-		timezones = append(timezones, tz)
+		timeZones = append(timeZones, tz)
 	}
 
-	return timezones
+	return timeZones
 }
