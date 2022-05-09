@@ -22,12 +22,12 @@ func AddTimeZoneCommand(chatID int64, args AddTimeZoneArguments) string {
 
 	AddTimeZone(chatID, timeZone)
 
-	return fmt.Sprintf("New time zone %q was added.\n", timeZone.Label)
+	return fmt.Sprintf("New time zone with label %q was added.\n", timeZone.Label)
 }
 
 func RemoveTimeZoneCommand(chatID int64, args RemoveTimeZoneArguments) string {
 	RemoveTimeZone(chatID, args.Label)
-	return fmt.Sprintf("Time zone %q was removed.\n", args.Label)
+	return fmt.Sprintf("Time zone with label %q was removed.\n", args.Label)
 }
 
 func ClearTimeZonesCommand() string {
