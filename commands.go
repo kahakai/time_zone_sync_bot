@@ -36,6 +36,12 @@ func ClearTimeZonesCommand() string {
 }
 
 func TimeCommand(chatID int64) string {
+	timeZones := DisplayTimeZones(chatID)
+
+	if len(timeZones) == 0 {
+		return "No time zones to show."
+	}
+
 	return DisplayTimeZones(chatID)
 }
 
