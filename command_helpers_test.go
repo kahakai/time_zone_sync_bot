@@ -25,11 +25,11 @@ func TestAddTimeZoneFileExists(t *testing.T) {
 	file := filepath.Join("timezones", filename)
 
 	if _, err := os.Stat(file); errors.Is(err, os.ErrNotExist) {
-		t.Fatal(err)
+		t.Error(err)
 	}
 
 	if err := os.Remove(file); err != nil {
-		t.Fatal(err)
+		t.Error(err)
 	}
 }
 
@@ -48,7 +48,7 @@ func TestAddTimeZone(t *testing.T) {
 
 	f, err := os.Open(file)
 	if err != nil {
-		t.Fatal(err)
+		t.Error(err)
 	}
 
 	defer os.Remove(file)
@@ -68,7 +68,7 @@ func TestAddTimeZone(t *testing.T) {
 	}
 
 	if err != nil {
-		t.Fatal(err)
+		t.Error(err)
 	}
 
 	if actualTimeZone != timeZone {
@@ -101,7 +101,7 @@ func TestAddTimeZones(t *testing.T) {
 
 	f, err := os.Open(file)
 	if err != nil {
-		t.Fatal(err)
+		t.Error(err)
 	}
 
 	defer os.Remove(file)
@@ -119,7 +119,7 @@ func TestAddTimeZones(t *testing.T) {
 		}
 
 		if err != nil {
-			t.Fatal(err)
+			t.Error(err)
 		}
 
 		tz := TimeZone{
@@ -173,7 +173,7 @@ func TestRemoveTimeZone(t *testing.T) {
 
 	f, err := os.Open(file)
 	if err != nil {
-		t.Fatal(err)
+		t.Error(err)
 	}
 
 	defer os.Remove(file)
@@ -191,7 +191,7 @@ func TestRemoveTimeZone(t *testing.T) {
 		}
 
 		if err != nil {
-			t.Fatal(err)
+			t.Error(err)
 		}
 
 		tz := TimeZone{
@@ -233,7 +233,7 @@ func TestRemoveTimeZones(t *testing.T) {
 	file := filepath.Join("timezones", filename)
 
 	if _, err := os.Stat(file); !errors.Is(err, os.ErrNotExist) {
-		t.Fatal(err)
+		t.Error(err)
 	}
 }
 
@@ -262,6 +262,6 @@ func TestRemoveAllTimeZones(t *testing.T) {
 	dir := "timezones"
 
 	if _, err := IsEmpty(dir); err != nil {
-		t.Fatal(err)
+		t.Error(err)
 	}
 }
