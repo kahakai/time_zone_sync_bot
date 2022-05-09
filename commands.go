@@ -30,6 +30,11 @@ func RemoveTimeZoneCommand(chatID int64, args RemoveTimeZoneArguments) string {
 	return fmt.Sprintf("Time zone with label %q was removed.\n", args.Label)
 }
 
+func RemoveTimeZonesCommand(chatID int64) string {
+	RemoveTimeZones(chatID)
+	return "Time zones were removed."
+}
+
 func ClearTimeZonesCommand() string {
 	RemoveAllTimeZones()
 	return "All time zones were cleared."

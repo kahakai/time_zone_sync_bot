@@ -51,6 +51,8 @@ func main() {
 			}
 
 			msg.Text = RemoveTimeZoneCommand(chatID, args)
+		case "remove_timezones":
+			msg.Text = RemoveTimeZonesCommand(chatID)
 		case "clear_timezones":
 			msg.Text = ClearTimeZonesCommand()
 		case "time":
