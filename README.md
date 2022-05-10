@@ -8,12 +8,12 @@
 - Show time with time zones
 
 ## Commands
-- `add_timezone`
-- `remove_timezone`
-- `remove_timezones`
-- `clear_timezones`
-- `time`
-- `help`
+- `/add_timezone <label> <time_zone>`: Add new time zone with label.
+- `/remove_timezone <label>`: Remove time zone with label.
+- `/remove_timezones`: Remove time zones for the chat.
+- `/clear_timezones`: Remove all time zones.
+- `/time`: Show time with time zones.
+- `/help`: Show help message.
 
 ## Caveats
 - Data is stored as **plain text** in CSV files.
