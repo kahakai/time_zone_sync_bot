@@ -73,6 +73,8 @@ func main() {
 		msg := tgbotapi.NewMessage(chatID, "")
 
 		switch update.Message.Command() {
+		case "start":
+			msg.Text = HelpCommand()
 		case "add_timezone":
 			args, err := HandleAddTimeZoneCommandArguments(update.Message.CommandArguments())
 			if err != nil {
