@@ -1,4 +1,4 @@
-module github.com/artnest/time-sync-bot
+module github.com/artnest/time-zone-sync-bot
 
 // +heroku goVersion go1.18
 go 1.18
