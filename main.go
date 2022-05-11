@@ -20,10 +20,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		log.Println("$PORT must be set")
-
-		port = "8080"
-		log.Printf("Using default PORT %s", port)
+		log.Fatal("$PORT must be set")
 	}
 
 	wh, _ := tgbotapi.NewWebhook("https://warm-refuge-96898.herokuapp.com/" + bot.Token)
