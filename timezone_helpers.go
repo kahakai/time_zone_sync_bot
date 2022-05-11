@@ -22,7 +22,7 @@ func DisplayTimeZones(timeZones []TimeZone, format TimeFormat) string {
 		timeInZone := now.In(location)
 		formattedTime := timeInZone.Format(format.Format())
 
-		fmt.Fprintf(&sb, "<b>%s</b>: %s (%s)\n", tz.Label, formattedTime, tz.Location)
+		fmt.Fprintf(&sb, "<b>%s</b>: %s\n", tz.Label, formattedTime)
 	}
 
 	return sb.String()

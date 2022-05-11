@@ -1,5 +1,9 @@
 package main
 
+import (
+	"time"
+)
+
 type TimeFormat int64
 
 const (
@@ -20,9 +24,9 @@ func (f TimeFormat) String() string {
 func (f TimeFormat) Format() string {
 	switch f {
 	case Full:
-		return "Mon Jan _2 15:04:05 2006"
+		return time.RFC1123Z
 	case Short:
-		return "15:04"
+		return "15:04 (-07)"
 	}
 	return "15:04"
 }
