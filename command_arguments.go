@@ -47,3 +47,36 @@ func HandleRemoveTimeZoneCommandArguments(args string) (RemoveTimeZoneArguments,
 
 	return commandArgs, nil
 }
+
+type TimeArguments struct {
+	Format TimeFormat
+}
+
+func HandleTimeCommandArguments(args string) (TimeArguments, error) {
+	argsArray := strings.Fields(args)
+
+	l := len(argsArray)
+
+	if l == 0 {
+		return TimeArguments{
+			Format: Short,
+		}, nil
+	}
+
+	if l != 1 {
+		return TimeArguments{}, fmt.Errorf("Please specify a time format.\n")
+	}
+
+	switch argsArray[0] {
+	case Full.String():
+		return TimeArguments{
+			Format: Full,
+		}, nil
+	case Short.String():
+		return TimeArguments{
+			Format: Short,
+		}, nil
+	default:
+		return TimeArguments{}, fmt.Errorf("Invalid time format.\n")
+	}
+}

@@ -27,7 +27,7 @@ func InsertTimeZone(chatID int64, timeZone TimeZone) error {
 	if _, err := dbConn.Exec(context.Background(), insertStmt, chatID, timeZone.Label, timeZone.Location); err != nil {
 		return fmt.Errorf("Error inserting values: %w", err)
 	}
-	
+
 	return nil
 }
 
@@ -51,7 +51,7 @@ func SelectTimeZones(chatID int64) ([]TimeZone, error) {
 		}
 
 		tz := TimeZone{
-			Label: label,
+			Label:    label,
 			Location: location,
 		}
 

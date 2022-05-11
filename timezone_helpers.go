@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func DisplayTimeZones(timeZones []TimeZone) string {
+func DisplayTimeZones(timeZones []TimeZone, format TimeFormat) string {
 	var sb strings.Builder
 
 	now := time.Now()
@@ -20,9 +20,9 @@ func DisplayTimeZones(timeZones []TimeZone) string {
 		}
 
 		timeInZone := now.In(location)
-		formattedTime := timeInZone.Format("Mon Jan _2 15:04:05 2006")
+		formattedTime := timeInZone.Format(format.Format())
 
-		fmt.Fprintf(&sb, "%s: %s %s\n", tz.Label, tz.Location, formattedTime)
+		fmt.Fprintf(&sb, "<b>%s</b>: %s (%s)\n", tz.Label, formattedTime, tz.Location)
 	}
 
 	return sb.String()

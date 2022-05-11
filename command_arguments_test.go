@@ -63,3 +63,32 @@ func TestHandleRemoveTimeZoneCommandArguments(t *testing.T) {
 		t.Errorf("got %v, want %v", got, want)
 	}
 }
+
+func TestHandleTimeCommandArgumentsEmpty(t *testing.T) {
+	args := ""
+
+	commandArgs, err := HandleTimeCommandArguments(args)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if got := commandArgs.Format; got != Short {
+		t.Errorf("got %v, want %v", got, Short)
+	}
+}
+
+func TestHandleTimeCommandArgumentsMultiple(t *testing.T) {
+	args := "short full unknown"
+
+	if _, err := HandleTimeCommandArguments(args); err == nil {
+		t.Errorf("want an error with args %q", args)
+	}
+}
+
+func TestHandleTimeCommandArgumentsInvalid(t *testing.T) {
+	args := "test"
+
+	if _, err := HandleTimeCommandArguments(args); err == nil {
+		t.Errorf("want an error with args %q", args)
+	}
+}

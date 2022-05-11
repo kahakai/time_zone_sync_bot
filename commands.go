@@ -8,7 +8,7 @@ const help = `Available commands:
 /add_timezone label timezone — Add time zone
 /remove_timezone label — Remove time zone with label
 /clear_timezones — Remove all time zones
-/time — Show time with time zones
+/time [format] — Show time with time zones. Available formats: full, short
 /help — Show help message`
 
 func HelpCommand() string {
@@ -44,11 +44,11 @@ func ClearTimeZonesCommand(chatID int64) string {
 	if err := DeleteTimeZones(chatID); err != nil {
 		return err.Error()
 	}
-	
+
 	return "All time zones were cleared."
 }
 
-func TimeCommand(chatID int64) string {
+func TimeCommand(chatID int64, args TimeArguments) string {
 	timeZones, err := SelectTimeZones(chatID)
 	if err != nil {
 		return err.Error()
@@ -58,7 +58,7 @@ func TimeCommand(chatID int64) string {
 		return "No time zones to show."
 	}
 
-	return DisplayTimeZones(timeZones)
+	return DisplayTimeZones(timeZones, args.Format)
 }
 
 func UnknownCommand() string {

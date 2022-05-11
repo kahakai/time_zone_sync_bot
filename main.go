@@ -94,7 +94,14 @@ func main() {
 		case "clear_timezones":
 			msg.Text = ClearTimeZonesCommand(chatID)
 		case "time":
-			msg.Text = TimeCommand(chatID)
+			args, err := HandleTimeCommandArguments(update.Message.CommandArguments())
+			if err != nil {
+				msg.Text = err.Error()
+				break
+			}
+
+			msg.Text = TimeCommand(chatID, args)
+			msg.ParseMode = "HTML"
 		case "help":
 			msg.Text = HelpCommand()
 		default:
