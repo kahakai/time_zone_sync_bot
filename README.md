@@ -1,25 +1,21 @@
 # TimeZoneSyncBot
 [`@TimeZoneSyncBot`](https://t.me/TimeZoneSyncBot) — a bot for storing time zones to sync them in a chat.
 
+- Deployed on Heroku
+- Uses Postgres for storage
+
 ## Features
 - Add time zone
-- Remove times zone(s)
+- Remove times zone
 - Clear time zones
 - Show time with time zones
 
 ## Commands
-- `/add_timezone <label> <time_zone>`: Add new time zone with label.
-- `/remove_timezone <label>`: Remove time zone with label.
-- `/remove_timezones`: Remove time zones for the chat.
+- `/add_timezone <label> <time_zone>`: Add time zone with a label.
+- `/remove_timezone <label>`: Remove time zone with the label.
 - `/clear_timezones`: Remove all time zones.
 - `/time`: Show time with time zones.
 - `/help`: Show help message.
-
-## Caveats
-- Data is stored as **plain text** in CSV files.
-- One CSV file for one chat, they are matched with `chat_id`.
-
-## [Sequence diagram](https://sequencediagram.org/index.html?presentationMode=readOnly#initialData=C4S2BsFMAIBUQLYwMoE8B2BjaAhA9sAFCEAOAhgE6iYjnrDQCqAzpBaZdbWfdAMIALMkXJUQNOg3wjO47r2m4ymANaR0AE2Is2AWgB8g4QC4A9KCTEjwA9OMBJdADc8awtdsFjAUQAekTABXYBgLGEw8BAQeLUJlUCdhGGlCaU8pZTVNYwAFCjxMSGZmaDDoCKiYgB10HMoyJBCKZmMa6HKhYAB9EFj4kESQ3AIlVXUtRRxM8fTRrI1jADEQTWgAMxAodbwKDuEeiZGpsc0AHl1dSens5a21nb3u3uIrk41Z4-mfX2AKeNLEDAAF54dBFdb5BClAQwDZQVJHa4ac6XRFvYzwJDQEFg5gvNHzD5I4x8MjgILgJLlQIUCjqBhhBEZN4o15fTEwFYArE4or45mE-Rs8ZLHbRBmA6Bcsq8vHCs4XeULRZi4QhDTcyD81kEkUqiji9WawgaSD9QbJXWaKydHXAYwAWSKzDIAHMYAB3MACbYGtWQDWM03mqkpQg6Cgo6zGZACPAe41AA)
 
 ## Examples
 `/time`
