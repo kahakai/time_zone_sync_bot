@@ -5,8 +5,8 @@ import (
 )
 
 const help = `Available commands:
-/add_timezone label timezone — Add time zone
-/remove_timezone label — Remove time zone with label
+/add_timezone label timezone — Add time zone (TZ database name)
+/remove_timezone label — Remove time zone
 /clear_timezones — Remove all time zones
 /time [format] — Show time with time zones. Available formats: full, short
 /help — Show help message`
