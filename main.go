@@ -1,14 +1,37 @@
 package main
 
 import (
+	"context"
 	"log"
 	"net/http"
 	"os"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	"github.com/jackc/pgx/v4"
+)
+
+var (
+	dbConn *pgx.Conn
 )
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
+	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+	if err != nil {
+		log.Fatalf("Unable to connect to database: %v\n", err)
+	}
+
+	dbConn = conn
+	defer dbConn.Close(context.Background())
+
+	if err := PrepareDatabase(); err != nil {
+		log.Fatal(err)
+	}
+
 	bot, err := tgbotapi.NewBotAPI(os.Getenv("TELEGRAM_APITOKEN"))
 	if err != nil {
 		log.Panic(err)
@@ -17,11 +40,6 @@ func main() {
 	bot.Debug = true
 
 	log.Printf("Authorized on account %s", bot.Self.UserName)
-
-	port := os.Getenv("PORT")
-	if port == "" {
-		log.Fatal("$PORT must be set")
-	}
 
 	wh, _ := tgbotapi.NewWebhook("https://warm-refuge-96898.herokuapp.com/" + bot.Token)
 
@@ -55,8 +73,6 @@ func main() {
 		msg := tgbotapi.NewMessage(chatID, "")
 
 		switch update.Message.Command() {
-		case "help":
-			msg.Text = HelpCommand()
 		case "add_timezone":
 			args, err := HandleAddTimeZoneCommandArguments(update.Message.CommandArguments())
 			if err != nil {
@@ -73,12 +89,12 @@ func main() {
 			}
 
 			msg.Text = RemoveTimeZoneCommand(chatID, args)
-		case "remove_timezones":
-			msg.Text = RemoveTimeZonesCommand(chatID)
 		case "clear_timezones":
-			msg.Text = ClearTimeZonesCommand()
+			msg.Text = ClearTimeZonesCommand(chatID)
 		case "time":
 			msg.Text = TimeCommand(chatID)
+		case "help":
+			msg.Text = HelpCommand()
 		default:
 			msg.Text = UnknownCommand()
 		}

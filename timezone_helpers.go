@@ -1,61 +1,29 @@
 package main
 
 import (
-	"encoding/csv"
 	"fmt"
-	"io"
 	"log"
-	"os"
-	"path/filepath"
+	"strings"
+	"time"
 )
 
-func FindTimeZoneIndex(tzs []TimeZone, label string) int {
-	for i := 0; i < len(tzs); i++ {
-		if tzs[i].Label == label {
-			return i
-		}
-	}
+func DisplayTimeZones(timeZones []TimeZone) string {
+	var sb strings.Builder
 
-	return -1
-}
+	now := time.Now()
 
-func GetTimeZones(chatID int64) []TimeZone {
-	filename := fmt.Sprintf("%d.csv", chatID)
-	file := filepath.Join("timezones", filename)
-
-	f, err := os.Open(file)
-	if err != nil {
-		err = fmt.Errorf("GetTimeZones: %w", err)
-		log.Println(err)
-
-		return []TimeZone{}
-	}
-
-	defer f.Close()
-
-	r := csv.NewReader(f)
-
-	var timeZones []TimeZone
-
-	for {
-		record, err := r.Read()
-
-		if err == io.EOF {
-			break
-		}
-
+	for _, tz := range timeZones {
+		location, err := GetLocation(tz.Location)
 		if err != nil {
 			log.Println(err)
-			break
+			continue
 		}
 
-		tz := TimeZone{
-			Label:    record[0],
-			Location: record[1],
-		}
+		timeInZone := now.In(location)
+		formattedTime := timeInZone.Format("Mon Jan _2 15:04:05 2006")
 
-		timeZones = append(timeZones, tz)
+		fmt.Fprintf(&sb, "%s: %s %s\n", tz.Label, tz.Location, formattedTime)
 	}
 
-	return timeZones
+	return sb.String()
 }

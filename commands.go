@@ -5,49 +5,60 @@ import (
 )
 
 const help = `Available commands:
-/add_timezone label timezone — Add new time zone
+/add_timezone label timezone — Add time zone
 /remove_timezone label — Remove time zone with label
 /clear_timezones — Remove all time zones
-/time — Show time with time zones`
+/time — Show time with time zones
+/help — Show help message`
 
 func HelpCommand() string {
 	return help
 }
 
 func AddTimeZoneCommand(chatID int64, args AddTimeZoneArguments) string {
+	if _, err := GetLocation(args.Location); err != nil {
+		return fmt.Sprintf("Bad location: %v\n", err)
+	}
+
 	timeZone := TimeZone{
 		Label:    args.Label,
 		Location: args.Location,
 	}
 
-	AddTimeZone(chatID, timeZone)
+	if err := InsertTimeZone(chatID, timeZone); err != nil {
+		return err.Error()
+	}
 
 	return fmt.Sprintf("New time zone with label %q was added.\n", timeZone.Label)
 }
 
 func RemoveTimeZoneCommand(chatID int64, args RemoveTimeZoneArguments) string {
-	RemoveTimeZone(chatID, args.Label)
+	if err := DeleteTimeZone(chatID, args.Label); err != nil {
+		return err.Error()
+	}
+
 	return fmt.Sprintf("Time zone with label %q was removed.\n", args.Label)
 }
 
-func RemoveTimeZonesCommand(chatID int64) string {
-	RemoveTimeZones(chatID)
-	return "Time zones were removed."
-}
-
-func ClearTimeZonesCommand() string {
-	RemoveAllTimeZones()
+func ClearTimeZonesCommand(chatID int64) string {
+	if err := DeleteTimeZones(chatID); err != nil {
+		return err.Error()
+	}
+	
 	return "All time zones were cleared."
 }
 
 func TimeCommand(chatID int64) string {
-	timeZones := DisplayTimeZones(chatID)
+	timeZones, err := SelectTimeZones(chatID)
+	if err != nil {
+		return err.Error()
+	}
 
 	if len(timeZones) == 0 {
 		return "No time zones to show."
 	}
 
-	return DisplayTimeZones(chatID)
+	return DisplayTimeZones(timeZones)
 }
 
 func UnknownCommand() string {
