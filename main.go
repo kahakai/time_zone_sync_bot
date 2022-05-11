@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"net/http"
 	"os"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -15,10 +16,34 @@ func main() {
 
 	bot.Debug = true
 
-	updateConfig := tgbotapi.NewUpdate(0)
-	updateConfig.Timeout = 30
+	log.Printf("Authorized on account %s", bot.Self.UserName)
 
-	updates := bot.GetUpdatesChan(updateConfig)
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Println("$PORT must be set")
+
+		port = "8080"
+		log.Printf("Using default PORT %s", port)
+	}
+
+	wh, _ := tgbotapi.NewWebhook("https://warm-refuge-96898.herokuapp.com/" + bot.Token)
+
+	_, err = bot.Request(wh)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	info, err := bot.GetWebhookInfo()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if info.LastErrorDate != 0 {
+		log.Printf("Telegram callback failed: %s", info.LastErrorMessage)
+	}
+
+	updates := bot.ListenForWebhook("/" + bot.Token)
+	go http.ListenAndServe("0.0.0.0:"+port, nil)
 
 	for update := range updates {
 		if update.Message == nil {
