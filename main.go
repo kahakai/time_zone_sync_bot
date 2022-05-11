@@ -102,6 +102,9 @@ func main() {
 
 			msg.Text = TimeCommand(chatID, args)
 			msg.ParseMode = "HTML"
+		case "timezones":
+			msg.Text = TimeZonesCommand(chatID)
+			msg.ParseMode = "HTML"
 		case "help":
 			msg.Text = HelpCommand()
 		default:
