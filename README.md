@@ -1,8 +1,11 @@
 # TimeZoneSyncBot
 [`@TimeZoneSyncBot`](https://t.me/TimeZoneSyncBot) — a bot for storing time zones to sync them in a chat.
 
-- Deployed on Heroku
-- Uses Postgres for storage
+## Installation
+1. Deploy to Heroku
+2. Add `TELEGRAM_APITOKEN` env var (config var)
+3. Add Postgres database
+4. Add `DATABASE_URL` env var (config var) in case of not using Heroku Postgres
 
 ## Features
 - Add time zone
