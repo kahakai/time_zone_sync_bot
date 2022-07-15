@@ -39,6 +39,40 @@ func TestHandleAddTimeZoneCommandArguments(t *testing.T) {
 	}
 }
 
+func TestHandleUpdateTimeZoneCommandArgumentsInvalid(t *testing.T) {
+	args := ""
+
+	if _, err := HandleUpdateTimeZoneCommandArguments(args); err == nil {
+		t.Errorf("want an error with args %q", args)
+	}
+}
+
+func TestHandleUpdateTimeZoneCommandArgumentsInvalidLocation(t *testing.T) {
+	args := "Test InvalidLocation"
+
+	if _, err := HandleUpdateTimeZoneCommandArguments(args); err == nil {
+		t.Errorf("want an error with args %q", args)
+	}
+}
+
+func TestHandleUpdateTimeZoneCommandArguments(t *testing.T) {
+	want := UpdateTimeZoneArguments{
+		Label:    "Test",
+		Location: "Europe/London",
+	}
+
+	args := "Test Europe/London"
+
+	got, err := HandleUpdateTimeZoneCommandArguments(args)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %v, want %v", got, want)
+	}
+}
+
 func TestHandleRemoveTimeZoneCommandArgumentsInvalid(t *testing.T) {
 	args := ""
 

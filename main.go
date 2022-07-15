@@ -83,6 +83,14 @@ func main() {
 			}
 
 			msg.Text = AddTimeZoneCommand(chatID, args)
+		case "update_timezone":
+			args, err := HandleUpdateTimeZoneCommandArguments(update.Message.CommandArguments())
+			if err != nil {
+				msg.Text = err.Error()
+				break
+			}
+
+			msg.Text = UpdateTimeZoneCommand(chatID, args)
 		case "remove_timezone":
 			args, err := HandleRemoveTimeZoneCommandArguments(update.Message.CommandArguments())
 			if err != nil {

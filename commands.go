@@ -5,12 +5,13 @@ import (
 )
 
 const help = `Available commands:
-/add_timezone label timezone — Add time zone (TZ database name)
-/remove_timezone label — Remove time zone
-/clear_timezones — Remove all time zones
-/time [format] — Show time in time zones. Available formats: full, short
+/add_timezone label timezone — Add time zone (TZ database name).
+/update_timezone label new_timezone — Update time zone.
+/remove_timezone label — Remove time zone.
+/clear_timezones — Remove all time zones.
+/time [format] — Show time in time zones. Available formats: full, short.
 /timezones — Show time zones.
-/help — Show help message`
+/help — Show help message.`
 
 func HelpCommand() string {
 	return help
@@ -31,6 +32,23 @@ func AddTimeZoneCommand(chatID int64, args AddTimeZoneArguments) string {
 	}
 
 	return fmt.Sprintf("New time zone with label %q was added.\n", timeZone.Label)
+}
+
+func UpdateTimeZoneCommand(chatID int64, args UpdateTimeZoneArguments) string {
+	if _, err := GetLocation(args.Location); err != nil {
+		return fmt.Sprintf("Bad location: %v\n", err)
+	}
+
+	timeZone := TimeZone{
+		Label:    args.Label,
+		Location: args.Location,
+	}
+
+	if err := UpdateTimeZone(chatID, timeZone); err != nil {
+		return err.Error()
+	}
+
+	return fmt.Sprintf("Time zone with label %q was updated.\n", timeZone.Label)
 }
 
 func RemoveTimeZoneCommand(chatID int64, args RemoveTimeZoneArguments) string {

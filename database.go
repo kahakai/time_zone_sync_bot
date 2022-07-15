@@ -24,7 +24,14 @@ func PrepareDatabase() error {
 func InsertTimeZone(chatID int64, timeZone TimeZone) error {
 	insertStmt := "INSERT INTO time_zones(chat_id, label, location) VALUES($1, $2, $3)"
 
-	if _, err := dbConn.Exec(context.Background(), insertStmt, chatID, timeZone.Label, timeZone.Location); err != nil {
+	_, err := dbConn.Exec(
+		context.Background(),
+		insertStmt,
+		chatID,
+		timeZone.Label,
+		timeZone.Location,
+	)
+	if err != nil {
 		return fmt.Errorf("Error inserting values: %w", err)
 	}
 
@@ -61,10 +68,28 @@ func SelectTimeZones(chatID int64) ([]TimeZone, error) {
 	return timeZones, nil
 }
 
+func UpdateTimeZone(chatID int64, newTimeZone TimeZone) error {
+	updateStmt := "UPDATE time_zones SET location = $3 WHERE chat_id = $1 AND label = $2"
+
+	_, err := dbConn.Exec(
+		context.Background(),
+		updateStmt,
+		chatID,
+		newTimeZone.Label,
+		newTimeZone.Location,
+	)
+	if err != nil {
+		return fmt.Errorf("Error updating row: %w", err)
+	}
+
+	return nil
+}
+
 func DeleteTimeZone(chatID int64, label string) error {
 	deleteStmt := "DELETE FROM time_zones WHERE chat_id = $1 AND label = $2"
 
-	if _, err := dbConn.Exec(context.Background(), deleteStmt, chatID, label); err != nil {
+	_, err := dbConn.Exec(context.Background(), deleteStmt, chatID, label)
+	if err != nil {
 		return fmt.Errorf("Error deleting row: %w", err)
 	}
 
@@ -74,7 +99,8 @@ func DeleteTimeZone(chatID int64, label string) error {
 func DeleteTimeZones(chatID int64) error {
 	deleteStmt := "DELETE FROM time_zones WHERE chat_id = $1"
 
-	if _, err := dbConn.Exec(context.Background(), deleteStmt, chatID); err != nil {
+	_, err := dbConn.Exec(context.Background(), deleteStmt, chatID)
+	if err != nil {
 		return fmt.Errorf("Error deleting rows: %w", err)
 	}
 

@@ -30,6 +30,31 @@ func HandleAddTimeZoneCommandArguments(args string) (AddTimeZoneArguments, error
 	return commandArgs, nil
 }
 
+type UpdateTimeZoneArguments struct {
+	Label    string
+	Location string
+}
+
+func HandleUpdateTimeZoneCommandArguments(args string) (UpdateTimeZoneArguments, error) {
+	argsArray := strings.Fields(args)
+
+	if len(argsArray) != 2 {
+		return UpdateTimeZoneArguments{}, fmt.Errorf("Please provide a label and a time zone as in the tz database.\n")
+	}
+
+	loc := argsArray[1]
+	if _, err := GetLocation(loc); err != nil {
+		return UpdateTimeZoneArguments{}, err
+	}
+
+	commandArgs := UpdateTimeZoneArguments{
+		Label:    argsArray[0],
+		Location: loc,
+	}
+
+	return commandArgs, nil
+}
+
 type RemoveTimeZoneArguments struct {
 	Label string
 }
