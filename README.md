@@ -1,5 +1,5 @@
 # TimeZoneSyncBot
-[`@TimeZoneSyncBot`](https://t.me/TimeZoneSyncBot) — a bot for storing time zones to sync them in a chat.
+[`@TimeZoneSyncBot`](https://t.me/TimeZoneSyncBot) — a bot for syncing time between time zones in a chat.
 
 ## Installation
 1. Deploy to Heroku
@@ -9,6 +9,7 @@
 
 ## Features
 - Add time zone
+- Update time zone
 - Remove times zone
 - Clear time zones
 - Show time with time zones

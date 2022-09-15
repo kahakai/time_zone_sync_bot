@@ -94,5 +94,5 @@ func TimeZonesCommand(chatID int64) string {
 }
 
 func UnknownCommand() string {
-	return "Unknown command. User /help command."
+	return "Unknown command. Use /help command."
 }
