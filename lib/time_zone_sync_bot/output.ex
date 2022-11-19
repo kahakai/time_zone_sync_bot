@@ -1,4 +1,15 @@
 defmodule TimeZoneSyncBot.Output do
+  def create_time_output(time_zones) do
+    alias TimeZoneSyncBot.Output.Time
+
+    for time_zone <- time_zones, into: "" do
+      %TimeZone{label: label, location: location} = time_zone
+      now = DateTime.now!(location)
+      time = Time.strftime(now)
+      "<b>#{label}</b>: #{time}\n"
+    end
+  end
+
   def create_time_zones_output(time_zones) do
     for time_zone <- time_zones, into: "" do
       %TimeZone{label: label, location: location} = time_zone
