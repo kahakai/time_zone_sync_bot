@@ -1,6 +1,8 @@
 defmodule TimeZoneSyncBot.OutputTest do
   use ExUnit.Case, async: true
 
+  alias TimeZoneSyncBot.TimeZone
+
   test "creates a formatted string of time zones" do
     time_zones = [
       %TimeZone{label: "Haifa", location: "Asia/Tel_Aviv"},

@@ -1,4 +1,6 @@
 defmodule TimeZoneSyncBot.Output do
+  alias TimeZoneSyncBot.TimeZone
+
   def create_time_output(time_zones) do
     alias TimeZoneSyncBot.Output.Time
 
