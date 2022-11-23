@@ -13,7 +13,8 @@ defmodule TimeZoneSyncBot.MixProject do
 
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      mod: {TimeZoneSyncBot.Application, []}
     ]
   end
 
