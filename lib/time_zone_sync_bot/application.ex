@@ -4,6 +4,7 @@ defmodule TimeZoneSyncBot.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      TimeZoneSyncBot.Repo,
       {Tz.UpdatePeriodically, []}
     ]
 

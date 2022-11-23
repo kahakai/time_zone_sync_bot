@@ -20,6 +20,8 @@ defmodule TimeZoneSyncBot.MixProject do
 
   defp deps do
     [
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, ">= 0.0.0"},
       {:castore, "~> 0.1"},
       {:mint, "~> 1.4"},
       {:tz, "~> 0.24.0"}
