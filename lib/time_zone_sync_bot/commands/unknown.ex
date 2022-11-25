@@ -1,8 +1,9 @@
 defmodule TimeZoneSyncBot.Commands.Unknown do
-  def execute() do
-    IO.puts("Unknown command.")
+  @unknown "Unknown command.\n\n"
 
-    TimeZoneSyncBot.Commands.Help.execute()
+  def execute() do
+    {:ok, message} = TimeZoneSyncBot.Commands.Help.execute()
+    {:ok, @unknown <> message}
   end
 end
 

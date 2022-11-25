@@ -8,7 +8,7 @@ defmodule TimeZoneSyncBot.Commands.Time do
 
     output = TimeZoneSyncBot.Output.create_time_output(time_zones)
 
-    IO.puts(output)
+    {:ok, output}
   end
 end
 

@@ -14,9 +14,9 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZone do
           location: inserted_location
         } = inserted_time_zone
 
-        IO.puts("#{inserted_label}: #{inserted_location} has been added.")
+        {:ok, "#{inserted_label}: #{inserted_location} has been added."}
       {:error, message} ->
-        IO.puts(message)
+        {:error, message}
     end
   end
 end

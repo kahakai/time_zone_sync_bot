@@ -12,7 +12,7 @@ defmodule TimeZoneSyncBot.Commands.Help do
         """
 
   def execute() do
-    @help
+    {:ok, @help}
   end
 end
 

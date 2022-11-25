@@ -16,9 +16,9 @@ defmodule TimeZoneSyncBot.Commands.UpdateTimeZone do
           location: updated_location
         } = updated_time_zone
 
-        IO.puts("#{updated_label} has been updated with #{updated_location}.")
+        {:ok, "#{updated_label} has been updated with #{updated_location}."}
       {:error, message} ->
-        IO.puts(message)
+        {:error, message}
     end
   end
 end
