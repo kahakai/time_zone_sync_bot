@@ -5,8 +5,8 @@ defmodule TimeZoneSyncBot.OutputTest do
 
   test "creates a formatted string of time zones" do
     time_zones = [
-      %TimeZone{label: "Haifa", location: "Asia/Tel_Aviv"},
-      %TimeZone{label: "Warsaw", location: "Europe/Warsaw"}
+      %TimeZone{chat_id: 1, label: "Haifa", location: "Asia/Tel_Aviv"},
+      %TimeZone{chat_id: 1, label: "Warsaw", location: "Europe/Warsaw"}
     ]
 
     output = """

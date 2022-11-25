@@ -19,4 +19,3 @@ defmodule TimeZoneSyncBot.Output do
     end
   end
 end
-  

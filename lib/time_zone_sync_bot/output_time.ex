@@ -5,4 +5,3 @@ defmodule TimeZoneSyncBot.Output.Time do
     Calendar.strftime(datetime, @string_format)
   end
 end
-
