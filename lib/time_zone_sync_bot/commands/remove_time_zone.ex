@@ -15,8 +15,9 @@ defmodule TimeZoneSyncBot.Commands.RemoveTimeZone do
         } = deleted_time_zone
 
         {:ok, "#{deleted_label}: #{deleted_location} has been removed."}
-      {:error, message} ->
-        {:error, message}
+      {:error, changeset} ->
+        error_messages = TimeZoneSyncBot.Commands.Error.extract_error_messages(changeset)
+        {:error, error_messages}
     end
   end
 end

@@ -17,8 +17,9 @@ defmodule TimeZoneSyncBot.Commands.UpdateTimeZone do
         } = updated_time_zone
 
         {:ok, "#{updated_label} has been updated with #{updated_location}."}
-      {:error, message} ->
-        {:error, message}
+      {:error, changeset} ->
+        error_messages = TimeZoneSyncBot.Commands.Error.extract_error_messages(changeset)
+        {:error, error_messages}
     end
   end
 end
