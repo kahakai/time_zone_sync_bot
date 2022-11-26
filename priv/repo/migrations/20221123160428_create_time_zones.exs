@@ -7,5 +7,7 @@ defmodule TimeZoneSyncBot.Repo.Migrations.CreateTimeZones do
       add :label, :text
       add :location, :text
     end
+
+    create unique_index(:time_zones, [:label, :chat_id])
   end
 end
