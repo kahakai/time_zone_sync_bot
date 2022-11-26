@@ -17,7 +17,7 @@ defmodule TimeZoneSyncBot.TimeZone do
     time_zone
     |> Ecto.Changeset.cast(params, [:chat_id, :label, :location])
     |> Ecto.Changeset.validate_required([:chat_id, :label, :location])
-    |> TzExtra.Changeset.validate_time_zone(:location)
+    |> TzExtra.Changeset.validate_time_zone_identifier(:location)
     |> Ecto.Changeset.unique_constraint([:label, :chat_id])
   end
 end
