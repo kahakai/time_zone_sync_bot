@@ -1,12 +1,6 @@
 defmodule TimeZoneSyncBot.TimeZone do
   use Ecto.Schema
 
-  @enforce_keys [
-    :chat_id,
-    :label,
-    :location
-  ]
-
   schema "time_zones" do
     field(:chat_id, :integer)
     field(:label, :string)

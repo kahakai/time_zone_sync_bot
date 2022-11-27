@@ -1,11 +1,13 @@
 defmodule TimeZoneSyncBot.Commands.AddTimeZone do
   def execute(chat_id, label, location) do
-    time_zone = %TimeZoneSyncBot.TimeZone{
+    time_zone = %TimeZoneSyncBot.TimeZone{}
+    params = %{
       chat_id: chat_id,
       label: label,
       location: location
     }
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone)
+
+    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
 
     case TimeZoneSyncBot.Repo.insert(changeset) do
       {:ok, inserted_time_zone} ->

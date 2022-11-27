@@ -6,8 +6,9 @@ defmodule TimeZoneSyncBot.Commands.UpdateTimeZone do
       |> Ecto.Query.where(chat_id: ^chat_id)
       |> Ecto.Query.where(label: ^label)
       |> TimeZoneSyncBot.Repo.one
+    params = %{location: new_location}
 
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, %{location: new_location})
+    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
 
     case TimeZoneSyncBot.Repo.update(changeset) do
       {:ok, updated_time_zone} ->
