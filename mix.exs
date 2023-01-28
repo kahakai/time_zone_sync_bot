@@ -27,7 +27,8 @@ defmodule TimeZoneSyncBot.MixProject do
       {:castore, "~> 0.1"},
       {:mint, "~> 1.4"},
       {:tz, "~> 0.24.0"},
-      {:tz_extra, "~> 0.24.0"}
+      {:tz_extra, "~> 0.24.0"},
+      {:telegram, github: "visciang/telegram", tag: "0.22.4"}
     ]
   end
 
