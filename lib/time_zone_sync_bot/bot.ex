@@ -19,7 +19,6 @@ defmodule TimeZoneSyncBot.Bot do
         Telegram.Api.request(token, "sendMessage",
           chat_id: chat_id,
           reply_to_message_id: message_id,
-          parse_mode: "MarkdownV2",
           text: message
         )
 

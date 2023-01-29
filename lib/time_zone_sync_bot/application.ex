@@ -9,7 +9,8 @@ defmodule TimeZoneSyncBot.Application do
     ]
 
     bot_config = [
-      token: Application.fetch_env!(:time_zone_sync_bot, :token)
+      token: Application.fetch_env!(:time_zone_sync_bot, :token),
+      max_bot_concurrency: Application.fetch_env!(:time_zone_sync_bot, :max_bot_concurrency)
     ]
 
     children = [
