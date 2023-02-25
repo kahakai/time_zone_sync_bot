@@ -21,4 +21,3 @@ defmodule TimeZoneSyncBot.RepoCase do
     :ok
   end
 end
-

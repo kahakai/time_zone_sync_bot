@@ -6,4 +6,3 @@ defmodule TimeZoneSyncBot.Commands.Unknown do
     {:ok, "#{@unknown_command}\n\n" <> message}
   end
 end
-

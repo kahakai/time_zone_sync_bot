@@ -7,4 +7,3 @@ defmodule TimeZoneSyncBot.Commands.Error do
     end)
   end
 end
-

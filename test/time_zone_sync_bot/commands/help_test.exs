@@ -7,4 +7,3 @@ defmodule TimeZoneSyncBot.Commands.HelpTest do
     assert String.starts_with?(message, "Available commands")
   end
 end
-

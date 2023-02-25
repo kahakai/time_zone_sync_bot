@@ -10,9 +10,9 @@ defmodule TimeZoneSyncBot.OutputTest do
     ]
 
     output = """
-             <b>Haifa</b>: Asia/Tel_Aviv
-             <b>Warsaw</b>: Europe/Warsaw
-             """
+    <b>Haifa</b>: Asia/Tel_Aviv
+    <b>Warsaw</b>: Europe/Warsaw
+    """
 
     assert TimeZoneSyncBot.Output.create_time_zones_output(time_zones) == output
   end

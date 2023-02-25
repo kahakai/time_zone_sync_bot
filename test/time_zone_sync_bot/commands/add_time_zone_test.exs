@@ -18,15 +18,31 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
       location: ["is not a valid time zone"]
     }
 
-    {:error, error_messages} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Tel_Aviv", "Asia/Tel_Aviv")
+    {:error, error_messages} =
+      TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Tel_Aviv", "Asia/Tel_Aviv")
 
     assert error_messages == errors
   end
 
   test "adds a batch of time zones" do
-    assert match?({:ok, _}, TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Warsaw", "Europe/Warsaw"))
-    assert match?({:ok, _}, TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Haifa", "Asia/Jerusalem"))
-    assert match?({:ok, _}, TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "San_Francisco", "America/Los_Angeles"))
+    assert match?(
+             {:ok, _},
+             TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Warsaw", "Europe/Warsaw")
+           )
+
+    assert match?(
+             {:ok, _},
+             TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Haifa", "Asia/Jerusalem")
+           )
+
+    assert match?(
+             {:ok, _},
+             TimeZoneSyncBot.Commands.AddTimeZone.execute(
+               1,
+               "San_Francisco",
+               "America/Los_Angeles"
+             )
+           )
   end
 
   test "fails to add a time zone when the label is blank" do
@@ -34,7 +50,8 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
       label: ["can't be blank"]
     }
 
-    {:error, error_messages} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "", "Asia/Jerusalem")
+    {:error, error_messages} =
+      TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "", "Asia/Jerusalem")
 
     assert error_messages == errors
   end
@@ -44,7 +61,8 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
       location: ["can't be blank"]
     }
 
-    {:error, error_messages} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Asia/Jerusalem", "")
+    {:error, error_messages} =
+      TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Asia/Jerusalem", "")
 
     assert error_messages == errors
   end
@@ -54,7 +72,8 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
       location: ["is not a valid time zone"]
     }
 
-    {:error, error_messages} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Invalid Time Zone")
+    {:error, error_messages} =
+      TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Invalid Time Zone")
 
     assert error_messages == errors
   end
@@ -66,9 +85,9 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
       label: ["has already been taken"]
     }
 
-    {:error, error_messages} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Europe/Warsaw")
+    {:error, error_messages} =
+      TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Europe/Warsaw")
 
     assert error_messages == errors
   end
 end
-

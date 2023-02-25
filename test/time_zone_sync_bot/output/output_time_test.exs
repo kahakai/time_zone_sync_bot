@@ -11,4 +11,3 @@ defmodule TimeZoneSyncBot.Output.TimeTest do
     assert TimeZoneSyncBot.Output.Time.strftime(datetime) == "13:26 (+0300)"
   end
 end
-

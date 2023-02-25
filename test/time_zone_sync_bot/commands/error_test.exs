@@ -8,6 +8,7 @@ defmodule TimeZoneSyncBot.Commands.ErrorTest do
     }
 
     time_zone = %TimeZoneSyncBot.TimeZone{}
+
     params = %{
       chat_id: 1,
       label: "",
@@ -17,8 +18,7 @@ defmodule TimeZoneSyncBot.Commands.ErrorTest do
     changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
 
     error_messages = TimeZoneSyncBot.Commands.Error.extract_error_messages(changeset)
-    
+
     assert error_messages == expected_error_messages
   end
 end
-

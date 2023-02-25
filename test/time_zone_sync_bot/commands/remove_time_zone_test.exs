@@ -12,7 +12,9 @@ defmodule TimeZoneSyncBot.Commands.RemoveTimeZoneTest do
   test "removes a batch of time zones" do
     {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Warsaw", "Europe/Warsaw")
     {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Haifa", "Asia/Jerusalem")
-    {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "San_Francisco", "America/Los_Angeles")
+
+    {:ok, _} =
+      TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "San_Francisco", "America/Los_Angeles")
 
     result = TimeZoneSyncBot.Commands.RemoveTimeZone.execute(1, "Warsaw")
 

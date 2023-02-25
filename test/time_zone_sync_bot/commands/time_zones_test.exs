@@ -4,7 +4,9 @@ defmodule TimeZoneSyncBot.Commands.TimeZonesTest do
   test "returns a formatted string of time zones" do
     {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Warsaw", "Europe/Warsaw")
     {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Haifa", "Asia/Jerusalem")
-    {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "San_Francisco", "America/Los_Angeles")
+
+    {:ok, _} =
+      TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "San_Francisco", "America/Los_Angeles")
 
     output = """
     <b>Warsaw</b>: Europe/Warsaw
