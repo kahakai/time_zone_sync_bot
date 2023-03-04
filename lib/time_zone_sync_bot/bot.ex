@@ -5,6 +5,22 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
+            "text" => "/add_time_zone" <> args,
+            "chat" => %{
+              "id" => chat_id
+            },
+            "message_id" => message_id
+          }
+        },
+        token
+      ) do
+    TimeZoneSyncBot.Handlers.AddTimeZoneCommand.handle(token, chat_id, message_id, args)
+  end
+
+  @impl Telegram.Bot
+  def handle_update(
+        %{
+          "message" => %{
             "text" => "/time",
             "chat" => %{
               "id" => chat_id
