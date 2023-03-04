@@ -19,7 +19,7 @@ defmodule TimeZoneSyncBot.Handlers.AddTimeZoneCommand do
         message
 
       {:error, error_messages} ->
-        TimeZoneSyncBot.Output.Error.create_error_output(error_messages)
+        TimeZoneSyncBot.Output.Error.format(error_messages)
     end
   end
 end

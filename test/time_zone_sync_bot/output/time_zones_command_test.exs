@@ -1,9 +1,9 @@
-defmodule TimeZoneSyncBot.OutputTest do
+defmodule TimeZoneSyncBot.Output.TimeZonesCommandTest do
   use ExUnit.Case, async: true
 
   alias TimeZoneSyncBot.TimeZone
 
-  test "creates a formatted string of time zones" do
+  test "formats time zones to an output string" do
     time_zones = [
       %TimeZone{chat_id: 1, label: "Haifa", location: "Asia/Tel_Aviv"},
       %TimeZone{chat_id: 1, label: "Warsaw", location: "Europe/Warsaw"}
@@ -14,6 +14,6 @@ defmodule TimeZoneSyncBot.OutputTest do
     <b>Warsaw</b>: Europe/Warsaw
     """
 
-    assert TimeZoneSyncBot.Output.create_time_zones_output(time_zones) == output
+    assert TimeZoneSyncBot.Output.TimeZonesCommand.format(time_zones) == output
   end
 end

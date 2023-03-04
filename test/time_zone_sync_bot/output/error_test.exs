@@ -1,13 +1,13 @@
 defmodule TimeZoneSyncBot.Output.ErrorTest do
   use ExUnit.Case, async: true
 
-  test "creates a formatted string of error messages" do
+  test "formats error messages to an output string" do
     error_messages = %{
       label: ["can't be blank"],
       location: ["can't be blank"]
     }
 
-    error_output = TimeZoneSyncBot.Output.Error.create_error_output(error_messages)
+    error_output = TimeZoneSyncBot.Output.Error.format(error_messages)
 
     assert error_output == """
            Errors occured:

@@ -7,7 +7,7 @@ defmodule TimeZoneSyncBot.Commands.Date do
       |> Ecto.Query.where(chat_id: ^chat_id)
       |> TimeZoneSyncBot.Repo.all()
 
-    output = TimeZoneSyncBot.Output.create_date_output(time_zones)
+    output = TimeZoneSyncBot.Output.DateCommand.format(time_zones)
 
     {:ok, output}
   end
