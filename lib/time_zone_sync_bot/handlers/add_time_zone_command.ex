@@ -18,8 +18,8 @@ defmodule TimeZoneSyncBot.Handlers.AddTimeZoneCommand do
       {:ok, message} ->
         message
 
-      {:error, error_messages} ->
-        TimeZoneSyncBot.Output.Error.format(error_messages)
+      {:error, error_text} ->
+        error_text
     end
   end
 end

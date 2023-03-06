@@ -12,16 +12,12 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZone do
 
     case TimeZoneSyncBot.Repo.insert(changeset) do
       {:ok, inserted_time_zone} ->
-        %TimeZoneSyncBot.TimeZone{
-          label: inserted_label,
-          location: inserted_location
-        } = inserted_time_zone
-
-        {:ok, "#{inserted_label}: #{inserted_location} has been added."}
+        {:ok, TimeZoneSyncBot.Output.AddTimeZoneCommand.format(inserted_time_zone)}
 
       {:error, changeset} ->
         error_messages = TimeZoneSyncBot.Commands.Error.extract_error_messages(changeset)
-        {:error, error_messages}
+        error_text = TimeZoneSyncBot.Output.Error.format(error_messages)
+        {:error, error_text}
     end
   end
 end
