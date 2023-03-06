@@ -1,5 +1,5 @@
 defmodule TimeZoneSyncBot.Parsers.AddTimeZoneArguments do
-  defp parse(args) do
+  def parse(args) do
     String.split(args) |> normalize
   end
 

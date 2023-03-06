@@ -1,5 +1,5 @@
 defmodule TimeZoneSyncBot.Parsers.RemoveTimeZoneArguments do
-  defp parse(args) do
+  def parse(args) do
     String.split(args) |> normalize
   end
 
