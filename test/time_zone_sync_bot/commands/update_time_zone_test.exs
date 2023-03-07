@@ -2,11 +2,12 @@ defmodule TimeZoneSyncBot.Commands.UpdateTimeZoneTest do
   use TimeZoneSyncBot.RepoCase, async: true
 
   test "updates time zone" do
-    {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Etc/UTC")
+    expected = "<b>Test</b> has been updated with Asia/Jerusalem."
 
+    {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Etc/UTC")
     {:ok, message} = TimeZoneSyncBot.Commands.UpdateTimeZone.execute(1, "Test", "Asia/Jerusalem")
 
-    assert message == "Test has been updated with Asia/Jerusalem."
+    assert message == expected
   end
 
   test "updates a batch of time zones" do
@@ -29,60 +30,65 @@ defmodule TimeZoneSyncBot.Commands.UpdateTimeZoneTest do
   end
 
   test "fails to update a time zone when the chat ID is not found" do
-    errors = %{
-      label: ["not found"]
-    }
+    expected = """
+    Errors occured:
+    label not found
+    """
 
-    {:error, error_messages} =
+    {:error, error_text} =
       TimeZoneSyncBot.Commands.UpdateTimeZone.execute(0, "Test", "Asia/Jerusalem")
 
-    assert error_messages == errors
+    assert error_text == expected
   end
 
   test "fails to update a time zone when the label is not found" do
-    errors = %{
-      label: ["not found"]
-    }
+    expected = """
+    Errors occured:
+    label not found
+    """
 
-    {:error, error_messages} =
+    {:error, error_text} =
       TimeZoneSyncBot.Commands.UpdateTimeZone.execute(1, "Test", "Asia/Jerusalem")
 
-    assert error_messages == errors
+    assert error_text == expected
   end
 
   test "fails to update a time zone when the label is blank" do
-    errors = %{
-      label: ["not found"]
-    }
+    expected = """
+    Errors occured:
+    label not found
+    """
 
-    {:error, error_messages} =
+    {:error, error_text} =
       TimeZoneSyncBot.Commands.UpdateTimeZone.execute(1, "", "Asia/Jerusalem")
 
-    assert error_messages == errors
+    assert error_text == expected
   end
 
   test "fails to update a time zone when the location is blank" do
+    expected = """
+    Errors occured:
+    location can't be blank
+    """
+
     {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Etc/UTC")
 
-    errors = %{
-      location: ["can't be blank"]
-    }
+    {:error, error_text} = TimeZoneSyncBot.Commands.UpdateTimeZone.execute(1, "Test", "")
 
-    {:error, error_messages} = TimeZoneSyncBot.Commands.UpdateTimeZone.execute(1, "Test", "")
-
-    assert error_messages == errors
+    assert error_text == expected
   end
 
   test "fails to update a time zone when the location is not a valid time zone" do
+    expected = """
+    Errors occured:
+    location is not a valid time zone
+    """
+
     {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Etc/UTC")
 
-    errors = %{
-      location: ["is not a valid time zone"]
-    }
-
-    {:error, error_messages} =
+    {:error, error_text} =
       TimeZoneSyncBot.Commands.UpdateTimeZone.execute(1, "Test", "Invalid Time Zone")
 
-    assert error_messages == errors
+    assert error_text == expected
   end
 end

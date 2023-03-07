@@ -13,7 +13,8 @@ defmodule TimeZoneSyncBot.Commands.UpdateTimeZone do
           label: ["not found"]
         }
 
-        {:error, error_messages}
+        error_text = TimeZoneSyncBot.Output.Error.format(error_messages)
+        {:error, error_text}
 
       time_zone ->
         params = %{location: new_location}
@@ -22,16 +23,12 @@ defmodule TimeZoneSyncBot.Commands.UpdateTimeZone do
 
         case TimeZoneSyncBot.Repo.update(changeset) do
           {:ok, updated_time_zone} ->
-            %TimeZoneSyncBot.TimeZone{
-              label: updated_label,
-              location: updated_location
-            } = updated_time_zone
-
-            {:ok, "#{updated_label} has been updated with #{updated_location}."}
+            {:ok, TimeZoneSyncBot.Output.UpdateTimeZoneCommand.format(updated_time_zone)}
 
           {:error, changeset} ->
             error_messages = TimeZoneSyncBot.Commands.Error.extract_error_messages(changeset)
-            {:error, error_messages}
+            error_text = TimeZoneSyncBot.Output.Error.format(error_messages)
+            {:error, error_text}
         end
     end
   end

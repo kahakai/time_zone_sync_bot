@@ -19,9 +19,9 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
 
   test "fails to add non-canonical time zone" do
     expected = """
-               Errors occured:
-               location is not a valid time zone
-               """
+    Errors occured:
+    location is not a valid time zone
+    """
 
     {:error, error_text} =
       TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Tel_Aviv", "Asia/Tel_Aviv")
@@ -52,9 +52,9 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
 
   test "fails to add a time zone when the label is blank" do
     expected = """
-               Errors occured:
-               label can't be blank
-               """
+    Errors occured:
+    label can't be blank
+    """
 
     {:error, error_text} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "", "Asia/Jerusalem")
 
@@ -63,9 +63,9 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
 
   test "fails to add a time zone when the location is blank" do
     expected = """
-               Errors occured:
-               location can't be blank
-               """
+    Errors occured:
+    location can't be blank
+    """
 
     {:error, error_text} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Asia/Jerusalem", "")
 
@@ -74,9 +74,9 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
 
   test "fails to add a time zone when the location is not a valid time zone" do
     expected = """
-               Errors occured:
-               location is not a valid time zone
-               """
+    Errors occured:
+    location is not a valid time zone
+    """
 
     {:error, error_text} =
       TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Invalid Time Zone")
@@ -88,9 +88,9 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
     {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Asia/Jerusalem")
 
     expected = """
-               Errors occured:
-               label has already been taken
-               """
+    Errors occured:
+    label has already been taken
+    """
 
     {:error, error_text} =
       TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Europe/Warsaw")
