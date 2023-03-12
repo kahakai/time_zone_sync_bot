@@ -8,6 +8,6 @@ defmodule TimeZoneSyncBot.Commands.ClearTimeZones do
 
     TimeZoneSyncBot.Repo.delete_all(query)
 
-    {:ok, "All time zones have been removed."}
+    {:ok, TimeZoneSyncBot.Output.ClearTimeZonesCommand.format()}
   end
 end

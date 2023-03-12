@@ -19,7 +19,7 @@ defmodule TimeZoneSyncBot.Commands.RemoveTimeZone do
       time_zone ->
         case TimeZoneSyncBot.Repo.delete(time_zone) do
           {:ok, deleted_time_zone} ->
-           {:ok, TimeZoneSyncBot.Output.RemoveTimeZoneCommand.format(deleted_time_zone)}
+            {:ok, TimeZoneSyncBot.Output.RemoveTimeZoneCommand.format(deleted_time_zone)}
 
           {:error, changeset} ->
             error_messages = TimeZoneSyncBot.Commands.Error.extract_error_messages(changeset)
