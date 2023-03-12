@@ -13,21 +13,18 @@ defmodule TimeZoneSyncBot.Commands.RemoveTimeZone do
           label: ["not found"]
         }
 
-        {:error, error_messages}
+        error_text = TimeZoneSyncBot.Output.Error.format(error_messages)
+        {:error, error_text}
 
       time_zone ->
         case TimeZoneSyncBot.Repo.delete(time_zone) do
           {:ok, deleted_time_zone} ->
-            %TimeZoneSyncBot.TimeZone{
-              label: deleted_label,
-              location: deleted_location
-            } = deleted_time_zone
-
-            {:ok, "#{deleted_label}: #{deleted_location} has been removed."}
+           {:ok, TimeZoneSyncBot.Output.RemoveTimeZoneCommand.format(deleted_time_zone)}
 
           {:error, changeset} ->
             error_messages = TimeZoneSyncBot.Commands.Error.extract_error_messages(changeset)
-            {:error, error_messages}
+            error_text = TimeZoneSyncBot.Output.Error.format(error_messages)
+            {:error, error_text}
         end
     end
   end

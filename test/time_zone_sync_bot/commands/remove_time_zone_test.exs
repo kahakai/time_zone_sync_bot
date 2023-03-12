@@ -6,7 +6,7 @@ defmodule TimeZoneSyncBot.Commands.RemoveTimeZoneTest do
 
     {:ok, message} = TimeZoneSyncBot.Commands.RemoveTimeZone.execute(1, "Test")
 
-    assert message == "Test: Etc/UTC has been removed."
+    assert message == "<b>Test</b>: Etc/UTC has been removed."
   end
 
   test "removes a batch of time zones" do
@@ -30,32 +30,35 @@ defmodule TimeZoneSyncBot.Commands.RemoveTimeZoneTest do
   end
 
   test "fails to remove a time zone when the chat ID is not found" do
-    errors = %{
-      label: ["not found"]
-    }
+    expected = """
+    Errors occured:
+    label not found
+    """
 
-    {:error, error_messages} = TimeZoneSyncBot.Commands.RemoveTimeZone.execute(0, "Test")
+    {:error, error_text} = TimeZoneSyncBot.Commands.RemoveTimeZone.execute(0, "Test")
 
-    assert error_messages == errors
+    assert error_text == expected
   end
 
   test "fails to remove a time zone when the label is not found" do
-    errors = %{
-      label: ["not found"]
-    }
+    expected = """
+    Errors occured:
+    label not found
+    """
 
-    {:error, error_messages} = TimeZoneSyncBot.Commands.RemoveTimeZone.execute(1, "Test")
+    {:error, error_text} = TimeZoneSyncBot.Commands.RemoveTimeZone.execute(1, "Test")
 
-    assert error_messages == errors
+    assert error_text == expected
   end
 
   test "fails to remove a time zone when the label is blank" do
-    errors = %{
-      label: ["not found"]
-    }
+    expected = """
+    Errors occured:
+    label not found
+    """
 
-    {:error, error_messages} = TimeZoneSyncBot.Commands.RemoveTimeZone.execute(1, "")
+    {:error, error_text} = TimeZoneSyncBot.Commands.RemoveTimeZone.execute(1, "")
 
-    assert error_messages == errors
+    assert error_text == expected
   end
 end
