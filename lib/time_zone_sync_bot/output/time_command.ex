@@ -1,6 +1,6 @@
 defmodule TimeZoneSyncBot.Output.TimeCommand do
   def format(time_zones) do
-    for time_zone <- time_zones, into: "" do
+    Enum.reduce(time_zones, "", fn time_zone, acc ->
       %TimeZoneSyncBot.TimeZone{
         label: label,
         location: location
@@ -10,7 +10,7 @@ defmodule TimeZoneSyncBot.Output.TimeCommand do
 
       time = TimeZoneSyncBot.Output.Time.strftime(now)
 
-      "<b>#{label}</b>: #{time}\n"
-    end
+      acc <> "<b>#{label}</b>: #{time}\n"
+    end)
   end
 end
