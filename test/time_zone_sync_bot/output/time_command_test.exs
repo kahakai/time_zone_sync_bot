@@ -1,4 +1,4 @@
-defmodule TimeZoneSyncBot.Output.DateCommandTest do
+defmodule TimeZoneSyncBot.Output.TimeCommandTest do
   use ExUnit.Case, async: true
 
   test "formats empty time zones to an output string" do
@@ -6,7 +6,7 @@ defmodule TimeZoneSyncBot.Output.DateCommandTest do
 
     time_zones = []
 
-    output = TimeZoneSyncBot.Output.DateCommand.format(time_zones)
+    output = TimeZoneSyncBot.Output.TimeCommand.format(time_zones)
 
     assert output == expected
   end
