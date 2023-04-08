@@ -1,10 +1,10 @@
 defmodule TimeZoneSyncBot.Output.RemoveTimeZoneCommand do
-  def format(deleted_time_zone) do
-    %TimeZoneSyncBot.TimeZone{
+  def format(deleted_entry) do
+    %TimeZoneSyncBot.Entry{
       label: label,
-      location: location
-    } = deleted_time_zone
+      time_zone: time_zone
+    } = deleted_entry
 
-    "<b>#{label}</b>: #{location} has been removed."
+    "<b>#{label}</b>: #{time_zone} has been removed."
   end
 end

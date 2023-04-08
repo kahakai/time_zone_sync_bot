@@ -4,7 +4,7 @@ defmodule TimeZoneSyncBot.Output.ErrorTest do
   test "formats error messages to an output string" do
     error_messages = %{
       label: ["can't be blank"],
-      location: ["can't be blank"]
+      time_zone: ["can't be blank"]
     }
 
     error_output = TimeZoneSyncBot.Output.Error.format(error_messages)
@@ -12,7 +12,7 @@ defmodule TimeZoneSyncBot.Output.ErrorTest do
     assert error_output == """
            Errors occured:
            label can't be blank
-           location can't be blank
+           time_zone can't be blank
            """
   end
 end

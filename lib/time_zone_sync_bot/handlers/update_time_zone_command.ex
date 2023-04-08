@@ -1,9 +1,9 @@
 defmodule TimeZoneSyncBot.Handlers.UpdateTimeZoneCommand do
   def handle(token, chat_id, message_id, args) do
-    {label, new_location} = TimeZoneSyncBot.Parsers.UpdateTimeZoneArguments.parse(args)
+    {label, new_time_zone} = TimeZoneSyncBot.Parsers.UpdateTimeZoneArguments.parse(args)
 
     message =
-      TimeZoneSyncBot.Commands.UpdateTimeZone.execute(chat_id, label, new_location)
+      TimeZoneSyncBot.Commands.UpdateTimeZone.execute(chat_id, label, new_time_zone)
       |> handle_command
 
     Telegram.Api.request(token, "sendMessage",

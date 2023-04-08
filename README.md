@@ -16,7 +16,7 @@
 
 ## Commands
 - `/add_timezone <label> <time_zone>`: Add time zone with a label. Time zone must be specified as TZ database name.
-- `/update_timezone <label> <new_timezone>`: Update time zone with the label.
+- `/update_timezone <label> <new_time_zone>`: Update time zone with the label.
 - `/remove_timezone <label>`: Remove time zone with the label.
 - `/clear_timezones`: Remove all time zones.
 - `/time`: Show time in time zones. Available formats: `full`, `short`.

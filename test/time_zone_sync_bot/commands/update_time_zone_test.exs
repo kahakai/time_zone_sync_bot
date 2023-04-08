@@ -65,10 +65,10 @@ defmodule TimeZoneSyncBot.Commands.UpdateTimeZoneTest do
     assert error_text == expected
   end
 
-  test "fails to update a time zone when the location is blank" do
+  test "fails to update a time zone when the time_zone is blank" do
     expected = """
     Errors occured:
-    location can't be blank
+    time_zone can't be blank
     """
 
     {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Etc/UTC")
@@ -78,10 +78,10 @@ defmodule TimeZoneSyncBot.Commands.UpdateTimeZoneTest do
     assert error_text == expected
   end
 
-  test "fails to update a time zone when the location is not a valid time zone" do
+  test "fails to update a time zone when the time_zone is not a valid time zone" do
     expected = """
     Errors occured:
-    location is not a valid time zone
+    time_zone is not a valid time zone
     """
 
     {:ok, _} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Test", "Etc/UTC")

@@ -1,16 +1,16 @@
-defmodule TimeZoneSyncBot.TimeZoneTest do
+defmodule TimeZoneSyncBot.EntryTest do
   use TimeZoneSyncBot.RepoCase, async: true
 
   test "passes validations and constraints" do
-    time_zone = %TimeZoneSyncBot.TimeZone{}
+    entry = %TimeZoneSyncBot.Entry{}
 
     params = %{
       chat_id: 1,
       label: "Test Label",
-      location: "Etc/UTC"
+      time_zone: "Etc/UTC"
     }
 
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
+    changeset = TimeZoneSyncBot.Entry.changeset(entry, params)
 
     result = TimeZoneSyncBot.Repo.insert(changeset)
 
@@ -18,69 +18,69 @@ defmodule TimeZoneSyncBot.TimeZoneTest do
   end
 
   test "violates validations and constraints" do
-    time_zone = %TimeZoneSyncBot.TimeZone{}
+    entry = %TimeZoneSyncBot.Entry{}
     params = %{}
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
+    changeset = TimeZoneSyncBot.Entry.changeset(entry, params)
     result = TimeZoneSyncBot.Repo.insert(changeset)
     assert match?({:error, _}, result)
 
-    time_zone = %TimeZoneSyncBot.TimeZone{}
+    entry = %TimeZoneSyncBot.Entry{}
 
     params = %{
       chat_id: nil,
       label: nil,
-      location: nil
+      time_zone: nil
     }
 
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
+    changeset = TimeZoneSyncBot.Entry.changeset(entry, params)
     result = TimeZoneSyncBot.Repo.insert(changeset)
     assert match?({:error, _}, result)
 
-    time_zone = %TimeZoneSyncBot.TimeZone{}
+    entry = %TimeZoneSyncBot.Entry{}
 
     params = %{
       chat_id: 1,
       label: "",
-      location: ""
+      time_zone: ""
     }
 
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
+    changeset = TimeZoneSyncBot.Entry.changeset(entry, params)
     result = TimeZoneSyncBot.Repo.insert(changeset)
     assert match?({:error, _}, result)
 
-    time_zone = %TimeZoneSyncBot.TimeZone{}
+    entry = %TimeZoneSyncBot.Entry{}
 
     params = %{
       chat_id: 1,
       label: "Test Label",
-      location: "Invalid Time Zone"
+      time_zone: "Invalid Time Zone"
     }
 
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
+    changeset = TimeZoneSyncBot.Entry.changeset(entry, params)
     result = TimeZoneSyncBot.Repo.insert(changeset)
     assert match?({:error, _}, result)
 
-    time_zone = %TimeZoneSyncBot.TimeZone{}
+    entry = %TimeZoneSyncBot.Entry{}
 
     params = %{
       chat_id: 1,
       label: "Test Label",
-      location: "Etc/UTC"
+      time_zone: "Etc/UTC"
     }
 
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
+    changeset = TimeZoneSyncBot.Entry.changeset(entry, params)
     result = TimeZoneSyncBot.Repo.insert(changeset)
     assert match?({:ok, _}, result)
 
-    time_zone = %TimeZoneSyncBot.TimeZone{}
+    entry = %TimeZoneSyncBot.Entry{}
 
     params = %{
       chat_id: 1,
       label: "Test Label",
-      location: "Etc/GMT"
+      time_zone: "Etc/GMT"
     }
 
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
+    changeset = TimeZoneSyncBot.Entry.changeset(entry, params)
     result = TimeZoneSyncBot.Repo.insert(changeset)
     assert match?({:error, _}, result)
   end

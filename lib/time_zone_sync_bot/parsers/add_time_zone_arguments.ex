@@ -3,8 +3,8 @@ defmodule TimeZoneSyncBot.Parsers.AddTimeZoneArguments do
     String.split(args) |> normalize
   end
 
-  defp normalize([label, location]) do
-    {label, location}
+  defp normalize([label, time_zone]) do
+    {label, time_zone}
   end
 
   defp normalize([arg]) do

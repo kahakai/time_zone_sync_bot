@@ -6,15 +6,15 @@ defmodule TimeZoneSyncBot.Commands.ErrorTest do
       label: ["can't be blank"]
     }
 
-    time_zone = %TimeZoneSyncBot.TimeZone{}
+    entry = %TimeZoneSyncBot.Entry{}
 
     params = %{
       chat_id: 1,
       label: "",
-      location: "Etc/UTC"
+      time_zone: "Etc/UTC"
     }
 
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
+    changeset = TimeZoneSyncBot.Entry.changeset(entry, params)
 
     error_text = TimeZoneSyncBot.Commands.Error.extract_error_messages(changeset)
 
@@ -24,18 +24,18 @@ defmodule TimeZoneSyncBot.Commands.ErrorTest do
   test "formats a map of two error messages to a human-friendly text message" do
     expected_error_messages = %{
       label: ["can't be blank"],
-      location: ["can't be blank"]
+      time_zone: ["can't be blank"]
     }
 
-    time_zone = %TimeZoneSyncBot.TimeZone{}
+    entry = %TimeZoneSyncBot.Entry{}
 
     params = %{
       chat_id: 1,
       label: "",
-      location: ""
+      time_zone: ""
     }
 
-    changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
+    changeset = TimeZoneSyncBot.Entry.changeset(entry, params)
 
     error_text = TimeZoneSyncBot.Commands.Error.extract_error_messages(changeset)
 

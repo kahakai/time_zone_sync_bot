@@ -1,9 +1,9 @@
 defmodule TimeZoneSyncBot.Commands.UpdateTimeZone do
   require Ecto.Query
 
-  def execute(chat_id, label, new_location) do
+  def execute(chat_id, label, new_time_zone) do
     query =
-      TimeZoneSyncBot.TimeZone
+      TimeZoneSyncBot.Entry
       |> Ecto.Query.where(chat_id: ^chat_id)
       |> Ecto.Query.where(label: ^label)
 
@@ -16,14 +16,14 @@ defmodule TimeZoneSyncBot.Commands.UpdateTimeZone do
         error_text = TimeZoneSyncBot.Output.Error.format(error_messages)
         {:error, error_text}
 
-      time_zone ->
-        params = %{location: new_location}
+      entry ->
+        params = %{time_zone: new_time_zone}
 
-        changeset = TimeZoneSyncBot.TimeZone.changeset(time_zone, params)
+        changeset = TimeZoneSyncBot.Entry.changeset(entry, params)
 
         case TimeZoneSyncBot.Repo.update(changeset) do
-          {:ok, updated_time_zone} ->
-            {:ok, TimeZoneSyncBot.Output.UpdateTimeZoneCommand.format(updated_time_zone)}
+          {:ok, updated_entry} ->
+            {:ok, TimeZoneSyncBot.Output.UpdateTimeZoneCommand.format(updated_entry)}
 
           {:error, changeset} ->
             error_messages = TimeZoneSyncBot.Commands.Error.extract_error_messages(changeset)

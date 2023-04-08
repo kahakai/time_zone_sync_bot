@@ -3,14 +3,14 @@ defmodule TimeZoneSyncBot.Output.TimeCommand do
     "There are no time zones."
   end
 
-  def format(time_zones) do
-    Enum.reduce(time_zones, "", fn time_zone, acc ->
-      %TimeZoneSyncBot.TimeZone{
+  def format(entries) do
+    Enum.reduce(entries, "", fn entry, acc ->
+      %TimeZoneSyncBot.Entry{
         label: label,
-        location: location
-      } = time_zone
+        time_zone: time_zone
+      } = entry
 
-      now = DateTime.now!(location)
+      now = DateTime.now!(time_zone)
 
       time = TimeZoneSyncBot.Output.Time.strftime(now)
 

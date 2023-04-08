@@ -1,10 +1,10 @@
 defmodule TimeZoneSyncBot.Output.UpdateTimeZoneCommand do
-  def format(updated_time_zone) do
-    %TimeZoneSyncBot.TimeZone{
+  def format(updated_entry) do
+    %TimeZoneSyncBot.Entry{
       label: label,
-      location: location
-    } = updated_time_zone
+      time_zone: time_zone
+    } = updated_entry
 
-    "<b>#{label}</b> has been updated with #{location}."
+    "<b>#{label}</b> has been updated with #{time_zone}."
   end
 end

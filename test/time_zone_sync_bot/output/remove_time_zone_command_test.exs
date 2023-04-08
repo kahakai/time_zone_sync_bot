@@ -1,14 +1,14 @@
 defmodule TimeZoneSyncBot.Output.RemoveTimeZoneCommandTest do
   use ExUnit.Case, async: true
 
-  alias TimeZoneSyncBot.TimeZone
+  alias TimeZoneSyncBot.Entry
 
   test "formats time zone to an output string" do
     expected = "<b>Haifa</b>: Asia/Tel_Aviv has been removed."
 
-    deleted_time_zone = %TimeZone{chat_id: 1, label: "Haifa", location: "Asia/Tel_Aviv"}
+    deleted_entry = %Entry{chat_id: 1, label: "Haifa", time_zone: "Asia/Tel_Aviv"}
 
-    output = TimeZoneSyncBot.Output.RemoveTimeZoneCommand.format(deleted_time_zone)
+    output = TimeZoneSyncBot.Output.RemoveTimeZoneCommand.format(deleted_entry)
 
     assert output == expected
   end

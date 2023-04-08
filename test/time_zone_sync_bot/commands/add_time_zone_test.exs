@@ -20,7 +20,7 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
   test "fails to add non-canonical time zone" do
     expected = """
     Errors occured:
-    location is not a valid time zone
+    time_zone is not a valid time zone
     """
 
     {:error, error_text} =
@@ -61,10 +61,10 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
     assert error_text == expected
   end
 
-  test "fails to add a time zone when the location is blank" do
+  test "fails to add a time zone when the time_zone is blank" do
     expected = """
     Errors occured:
-    location can't be blank
+    time_zone can't be blank
     """
 
     {:error, error_text} = TimeZoneSyncBot.Commands.AddTimeZone.execute(1, "Asia/Jerusalem", "")
@@ -72,10 +72,10 @@ defmodule TimeZoneSyncBot.Commands.AddTimeZoneTest do
     assert error_text == expected
   end
 
-  test "fails to add a time zone when the location is not a valid time zone" do
+  test "fails to add a time zone when the time_zone is not a valid time zone" do
     expected = """
     Errors occured:
-    location is not a valid time zone
+    time_zone is not a valid time zone
     """
 
     {:error, error_text} =

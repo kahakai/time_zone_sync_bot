@@ -2,12 +2,12 @@ defmodule TimeZoneSyncBot.Commands.Time do
   require Ecto.Query
 
   def execute(chat_id) do
-    time_zones =
-      TimeZoneSyncBot.TimeZone
+    entries =
+      TimeZoneSyncBot.Entry
       |> Ecto.Query.where(chat_id: ^chat_id)
       |> TimeZoneSyncBot.Repo.all()
 
-    output = TimeZoneSyncBot.Output.TimeCommand.format(time_zones)
+    output = TimeZoneSyncBot.Output.TimeCommand.format(entries)
 
     {:ok, output}
   end

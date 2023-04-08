@@ -1,12 +1,12 @@
 defmodule TimeZoneSyncBot.Output.TimeCommandTest do
   use ExUnit.Case, async: true
 
-  test "formats empty time zones to an output string" do
+  test "formats empty list of entries to an output string" do
     expected = "There are no time zones."
 
-    time_zones = []
+    entries = []
 
-    output = TimeZoneSyncBot.Output.TimeCommand.format(time_zones)
+    output = TimeZoneSyncBot.Output.TimeCommand.format(entries)
 
     assert output == expected
   end

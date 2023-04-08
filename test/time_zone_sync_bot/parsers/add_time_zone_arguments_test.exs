@@ -21,7 +21,7 @@ defmodule TimeZoneSyncBot.Parsers.AddTimeZoneArgumentsTest do
     assert actual == expected
   end
 
-  test "parse string with location only" do
+  test "parse string with time_zone only" do
     args = "Etc/UTC"
 
     expected = {"", "Etc/UTC"}
@@ -31,7 +31,7 @@ defmodule TimeZoneSyncBot.Parsers.AddTimeZoneArgumentsTest do
     assert actual == expected
   end
 
-  test "parse string with label and location" do
+  test "parse string with label and time_zone" do
     args = "Test Etc/UTC"
 
     expected = {"Test", "Etc/UTC"}
