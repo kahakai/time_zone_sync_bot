@@ -1,11 +1,15 @@
 defmodule TimeZoneSyncBot.Release do
   @app :time_zone_sync_bot
 
-  def migrate do
+  @doc """
+  Migrate the database. Defaults to migrating to the latest, `[all: true]`
+  Also accepts `[step: 1]`, or `[to: 20200118045751]`
+  """
+  def migrate(opts \\ [all: true]) do
     load_app()
 
     for repo <- repos() do
-      {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :up, all: true))
+      {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :up, opts))
     end
   end
 
