@@ -2,6 +2,17 @@ defmodule TimeZoneSyncBot.Release do
   @app :time_zone_sync_bot
 
   @doc """
+  Create databases for configured Repos.
+  """
+  def create do
+    load_app()
+
+    for repo <- repos() do
+      :ok = Ecto.Adapters.Postgres.storage_up(repo.config())
+    end
+  end
+
+  @doc """
   Print the migration status for configured Repos' migrations.
   """
   def migration_status do
