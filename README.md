@@ -1,5 +1,9 @@
 # TimeZoneSyncBot
-[`@TimeZoneSyncBot`](https://t.me/TimeZoneSyncBot) — a bot for syncing time between time zones in a chat.
+[`@TimeZoneSyncBot`](https://t.me/TimeZoneSyncBot) is a Telegram bot for syncing time between time zones in a Telegram chat.
+
+Time zones use TZ identifiers from the [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+
+Add the bot to a chat and grant "Send Messages" permission.
 
 ## Installation
 1. Deploy to [Fly.io](https://fly.io/).
@@ -12,7 +16,7 @@
 ## Features
 - Add time zone.
 - Update time zone.
-- Remove times zone.
+- Remove time zone.
 - Remove all time zones.
 - Show time in time zones.
 - Show date in time zones.
@@ -20,7 +24,7 @@
 - Show help message.
 
 ## Commands
-- `/add_time_zone <label> <time_zone>`: Add time zone with a label. Time zone must be specified as TZ database name.
+- `/add_time_zone <label> <time_zone>`: Add time zone with a label.
 - `/update_time_zone <label> <new_time_zone>`: Update time zone with the label.
 - `/remove_time_zone <label>`: Remove time zone with the label.
 - `/clear_time_zones`: Remove all time zones.
