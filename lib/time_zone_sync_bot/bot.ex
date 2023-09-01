@@ -5,6 +5,18 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
+            "pinned_message" => _
+          }
+        },
+        _token
+      ) do
+    :noop
+  end
+
+  @impl Telegram.Bot
+  def handle_update(
+        %{
+          "message" => %{
             "text" => "/add_time_zone" <> args,
             "chat" => %{
               "id" => chat_id
