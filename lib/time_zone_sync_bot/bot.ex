@@ -5,18 +5,6 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "pinned_message" => _
-          }
-        },
-        _token
-      ) do
-    :noop
-  end
-
-  @impl Telegram.Bot
-  def handle_update(
-        %{
-          "message" => %{
             "text" => "/add_time_zone" <> args,
             "chat" => %{
               "id" => chat_id
@@ -142,7 +130,23 @@ defmodule TimeZoneSyncBot.Bot do
   end
 
   @impl Telegram.Bot
+  def handle_update(
+        %{
+          "message" => %{
+            "text" => "/" <> _,
+            "chat" => %{
+              "id" => chat_id
+            },
+            "message_id" => message_id
+          }
+        },
+        token
+      ) do
+    TimeZoneSyncBot.Handlers.UnknownCommand.handle(token, chat_id, message_id)
+  end
+
+  @impl Telegram.Bot
   def handle_update(update, token) do
-    TimeZoneSyncBot.Handlers.UnknownCommand.handle(token, update)
+    TimeZoneSyncBot.Handlers.UnknownMessage.handle(token, update)
   end
 end
