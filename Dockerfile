@@ -1,4 +1,4 @@
-ARG BUILDER_IMAGE="hexpm/elixir:1.14.4-erlang-25.3-alpine-3.17.2"
+ARG BUILDER_IMAGE="hexpm/elixir:1.16.2-erlang-26.2.3-alpine-3.19.1"
 ARG RUNNER_IMAGE="alpine:3.17.3"
 
 FROM ${BUILDER_IMAGE} as builder
