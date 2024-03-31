@@ -15,7 +15,7 @@ defmodule TimeZoneSyncBot.Application do
 
     children = [
       TimeZoneSyncBot.Repo,
-      {Tz.UpdatePeriodically, []},
+      {Tz.WatchPeriodically, []},
       {Telegram.Webhook, config: webhook_config, bots: [{TimeZoneSyncBot.Bot, bot_config}]}
     ]
 
