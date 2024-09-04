@@ -18,8 +18,9 @@ Add the bot to a chat and grant "Send Messages" permission.
 - Update time zone.
 - Remove time zone.
 - Remove all time zones.
-- Show time in time zones.
 - Show date in time zones.
+- Show time in time zones.
+- Show datetime in time zones.
 - Show time zones.
 - Show help message.
 
@@ -28,12 +29,22 @@ Add the bot to a chat and grant "Send Messages" permission.
 - `/update_time_zone <label> <new_time_zone>`: Update time zone with the label.
 - `/remove_time_zone <label>`: Remove time zone with the label.
 - `/clear_time_zones`: Remove all time zones.
-- `/time`: Show time in time zones.
 - `/date`: Show date in time zones.
+- `/time`: Show time in time zones.
+- `/datetime`: Show datetime in time zones.
 - `/time_zones`: Show time zones.
 - `/help`: Show help message.
 
 ## Examples
+`/date`
+```plaintext
+<b>Tbilisi</b>: 2023-04-09
+<b>Haifa</b>: 2023-04-09
+<b>Warsaw</b>: 2023-04-09
+<b>London</b>: 2023-04-09
+<b>San_Francisco</b>: 2023-04-09
+```
+
 `/time`
 ```plaintext
 <b>Tbilisi</b>: 11:20 (+0400)
@@ -43,13 +54,13 @@ Add the bot to a chat and grant "Send Messages" permission.
 <b>San_Francisco</b>: 00:20 (-0700)
 ```
 
-`/date`
+`/datetime`
 ```plaintext
-<b>Tbilisi</b>: 2023-04-09
-<b>Haifa</b>: 2023-04-09
-<b>Warsaw</b>: 2023-04-09
-<b>London</b>: 2023-04-09
-<b>San_Francisco</b>: 2023-04-09
+<b>Tbilisi</b>: 2023-04-09 11:20 (+0400)
+<b>Haifa</b>: 2023-04-09 10:20 (+0300)
+<b>Warsaw</b>: 2023-04-09 09:20 (+0200)
+<b>London</b>: 2023-04-09 08:20 (+0100)
+<b>San_Francisco</b>: 2023-04-09 00:20 (-0700)
 ```
 
 `/timezones`
