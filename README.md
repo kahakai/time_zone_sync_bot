@@ -21,6 +21,7 @@ Add the bot to a chat and grant "Send Messages" permission.
 - Show date in time zones.
 - Show time in time zones.
 - Show datetime in time zones.
+- Show datetime in time zones for specified time of another time zone.
 - Show time zones.
 - Show help message.
 
@@ -32,6 +33,7 @@ Add the bot to a chat and grant "Send Messages" permission.
 - `/date`: Show date in time zones.
 - `/time`: Show time in time zones.
 - `/datetime`: Show datetime in time zones.
+- `/sync_datetime <label> <time>`: Show datetime in time zones for specified time of another time zone.
 - `/time_zones`: Show time zones.
 - `/help`: Show help message.
 
