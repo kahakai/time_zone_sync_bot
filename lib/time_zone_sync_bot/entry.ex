@@ -11,7 +11,7 @@ defmodule TimeZoneSyncBot.Entry do
     entry
     |> Ecto.Changeset.cast(params, [:chat_id, :label, :time_zone])
     |> Ecto.Changeset.validate_required([:chat_id, :label, :time_zone])
-    |> TzExtra.Changeset.validate_time_zone_identifier(:time_zone)
+    |> TzExtra.Changeset.validate_time_zone_id(:time_zone)
     |> Ecto.Changeset.unique_constraint([:label, :chat_id])
   end
 end

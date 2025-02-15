@@ -22,13 +22,15 @@ defmodule TimeZoneSyncBot.MixProject do
 
   defp deps do
     [
-      {:ecto_sql, "~> 3.0"},
+      {:ecto, "~> 3.12.5"},
+      {:ecto_sql, "~> 3.12.1"},
       {:postgrex, ">= 0.0.0"},
-      {:castore, "~> 0.1"},
-      {:mint, "~> 1.4"},
-      {:tz, "~> 0.26.5"},
-      {:tz_extra, "~> 0.26.0"},
-      {:telegram, github: "visciang/telegram", tag: "0.22.4"}
+      {:castore, "~> 1.0.11"},
+      {:mint, "~> 1.7.1"},
+      {:tz, "~> 0.28.1"},
+      {:tz_extra, "~> 0.45.0"},
+      {:bandit, "~> 1.5.7"},
+      {:telegram, github: "visciang/telegram", tag: "2.0.0"}
     ]
   end
 

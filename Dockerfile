@@ -1,5 +1,5 @@
-ARG BUILDER_IMAGE="hexpm/elixir:1.16.2-erlang-26.2.3-alpine-3.19.1"
-ARG RUNNER_IMAGE="alpine:3.17.3"
+ARG BUILDER_IMAGE="hexpm/elixir:1.18.2-erlang-27.2.2-alpine-3.21.2"
+ARG RUNNER_IMAGE="alpine:3.21.3"
 
 FROM ${BUILDER_IMAGE} as builder
 
@@ -51,4 +51,3 @@ ENV ECTO_IPV6=true
 ENV ERL_AFLAGS="-proto_dist inet6_tcp"
 
 CMD /app/entry start
-
