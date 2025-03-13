@@ -1,5 +1,6 @@
 defmodule TimeZoneSyncBot.Entry do
   use Ecto.Schema
+  import Ecto.Changeset
 
   schema "entries" do
     field(:chat_id, :integer)
@@ -7,11 +8,12 @@ defmodule TimeZoneSyncBot.Entry do
     field(:time_zone, :string)
   end
 
-  def changeset(entry, params \\ %{}) do
+  @doc false
+  def changeset(entry, attrs \\ %{}) do
     entry
-    |> Ecto.Changeset.cast(params, [:chat_id, :label, :time_zone])
-    |> Ecto.Changeset.validate_required([:chat_id, :label, :time_zone])
+    |> cast(attrs, [:chat_id, :label, :time_zone])
+    |> validate_required([:chat_id, :label, :time_zone])
     |> TzExtra.Changeset.validate_time_zone_id(:time_zone)
-    |> Ecto.Changeset.unique_constraint([:label, :chat_id])
+    |> unique_constraint([:label, :chat_id])
   end
 end

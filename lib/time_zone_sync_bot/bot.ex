@@ -5,11 +5,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/add_time_zone" <> args,
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/add_time_zone" <> args
           }
         },
         token
@@ -21,11 +21,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/update_time_zone" <> args,
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/update_time_zone" <> args
           }
         },
         token
@@ -37,11 +37,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/remove_time_zone" <> args,
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/remove_time_zone" <> args
           }
         },
         token
@@ -53,11 +53,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/clear_time_zones",
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/clear_time_zones"
           }
         },
         token
@@ -69,11 +69,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/date",
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/date"
           }
         },
         token
@@ -85,11 +85,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/time",
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/time"
           }
         },
         token
@@ -101,11 +101,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/datetime",
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/datetime"
           }
         },
         token
@@ -117,11 +117,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/sync_datetime" <> args,
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/sync_datetime" <> args
           }
         },
         token
@@ -133,11 +133,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/time_zones",
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/time_zones"
           }
         },
         token
@@ -149,11 +149,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/help",
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/help"
           }
         },
         token
@@ -165,11 +165,11 @@ defmodule TimeZoneSyncBot.Bot do
   def handle_update(
         %{
           "message" => %{
-            "text" => "/" <> _,
             "chat" => %{
               "id" => chat_id
             },
-            "message_id" => message_id
+            "message_id" => message_id,
+            "text" => "/" <> _
           }
         },
         token
